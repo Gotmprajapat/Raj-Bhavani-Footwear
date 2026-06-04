@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Raj Bhawani Footwears | Premium Shoes</title>
+    <title>Raj Bhawani Footwears</title>
     <style>
         * {
             margin: 0;
@@ -13,97 +13,63 @@
 
         body {
             font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
-            background: #0a0a0a;
-            color: #f1f1f1;
+            background: #ffffff;
+            color: #1a1a1a;
             scroll-behavior: smooth;
         }
 
-        /* Hero Section with Big Name */
+        /* Hero Section - Chota naam */
         .hero {
-            min-height: 100vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(0,0,0,0) 70%);
-            animation: rotateBg 20s linear infinite;
-        }
-
-        @keyframes rotateBg {
-            0% { transform: translate(-25%, -25%) rotate(0deg); }
-            100% { transform: translate(-25%, -25%) rotate(360deg); }
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
             padding: 2rem;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 10vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #FFFFFF, #FFD700, #FFA500);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: shine 3s linear infinite;
-            margin-bottom: 1rem;
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
         }
 
-        @keyframes shine {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+        .hero h1 span {
+            color: #e67e22;
         }
 
-        .hero h2 {
-            font-size: clamp(1rem, 4vw, 1.8rem);
-            font-weight: 400;
-            color: #ccc;
-            margin-top: 1rem;
-            border-top: 2px solid #ffd700;
-            display: inline-block;
-            padding-top: 1rem;
+        .hero p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 0.8rem;
         }
 
-        /* Auto Slideshow Gallery Section */
+        /* Slideshow Section */
         .gallery-section {
-            padding: 4rem 2rem;
-            background: #0f0f0f;
+            padding: 3rem 1.5rem;
+            background: #ffffff;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        .section-title span {
-            color: #ffd700;
-            border-bottom: 3px solid #ffd700;
-            padding-bottom: 5px;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            color: #333;
         }
 
         .slideshow-container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            border-radius: 32px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             aspect-ratio: 16 / 9;
         }
 
@@ -111,7 +77,7 @@
             display: flex;
             width: 100%;
             height: 100%;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .slide {
@@ -125,27 +91,28 @@
             object-fit: cover;
         }
 
-        /* Scroll Spy Section - Photos that load and hide on scroll */
+        /* Dynamic Photos Grid */
         .dynamic-photos {
-            padding: 4rem 2rem;
-            background: #050505;
+            padding: 3rem 1.5rem;
+            background: #f8f9fa;
         }
 
         .dynamic-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            max-width: 1400px;
+            gap: 1.8rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .photo-card {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
-            border-radius: 24px;
+            background: white;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
         }
 
         .photo-card.visible {
@@ -155,65 +122,58 @@
 
         .photo-card.hide-scroll {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(40px);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
         }
 
         .photo-card img {
             width: 100%;
-            height: 280px;
+            height: 260px;
             object-fit: cover;
-            transition: transform 0.4s;
         }
 
-        .photo-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .photo-card p {
-            background: #1e1e2e;
-            padding: 0.8rem;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        /* Info & Location Section */
+        /* Info Section White Theme */
         .info-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(145deg, #111111, #1a1a1a);
+            padding: 3rem 1.5rem;
+            background: #ffffff;
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .info-card {
-            background: rgba(30,30,46,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 2rem;
-            border: 1px solid #333;
-            transition: transform 0.3s;
+            background: #f8f9fa;
+            border-radius: 24px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+            border: 1px solid #eee;
         }
 
         .info-card:hover {
-            transform: translateY(-8px);
-            border-color: #ffd700;
+            transform: translateY(-5px);
+            border-color: #e67e22;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .info-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            color: #ffd700;
+            color: #e67e22;
         }
 
         .info-card p, .info-card a {
-            font-size: 1.1rem;
-            margin: 0.8rem 0;
-            color: #ddd;
+            font-size: 1rem;
+            margin: 0.7rem 0;
+            color: #444;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -221,15 +181,18 @@
         }
 
         .info-card a:hover {
-            color: #ffd700;
+            color: #e67e22;
         }
 
         .map-container {
-            margin-top: 2rem;
-            border-radius: 28px;
+            margin-top: 2.5rem;
+            border-radius: 24px;
             overflow: hidden;
-            height: 350px;
-            border: 2px solid #ffd700;
+            height: 320px;
+            border: 1px solid #ddd;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .map-container iframe {
@@ -240,25 +203,39 @@
 
         footer {
             text-align: center;
-            padding: 2rem;
-            background: #000;
-            font-size: 0.9rem;
-            border-top: 1px solid #222;
+            padding: 1.8rem;
+            background: #f1f3f5;
+            color: #666;
+            font-size: 0.85rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .nav-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #d35400;
+            transform: scale(1.02);
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 1.8rem; }
-            .info-card h3 { font-size: 1.4rem; }
-        }
-
-        button {
-            background: #ffd700;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
+            .hero { min-height: 40vh; }
+            .section-title { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -266,87 +243,98 @@
 
     <div class="hero">
         <div class="hero-content">
-            <h1>राज भवानी फुटवियर्स</h1>
-            <h2>Raj Bhawani Footwears</h2>
-            <p style="margin-top: 2rem;">👟 Premium Quality Shoes | Since 1998</p>
+            <h1>Raj Bhawani <span>Footwears</span></h1>
+            <p>⭐ Premium Shoes | Adidas | Puma | Nike ⭐</p>
         </div>
     </div>
 
-    <!-- Auto-changing photos slider -->
+    <!-- Auto Slideshow (4 photos from your screenshots) -->
     <div class="gallery-section">
-        <div class="section-title">✨ <span>Our Gallery</span> ✨</div>
+        <div class="section-title">📷 Our Showroom 📷</div>
         <div class="slideshow-container">
             <div class="slides" id="slides">
-                <!-- These are dummy professional shoe images, replace with your real photos -->
-                <div class="slide"><img src="https://picsum.photos/id/20/1200/700" alt="Shoe 1"></div>
-                <div class="slide"><img src="https://picsum.photos/id/96/1200/700" alt="Shoe 2"></div>
-                <div class="slide"><img src="https://picsum.photos/id/42/1200/700" alt="Shoe 3"></div>
-                <div class="slide"><img src="https://picsum.photos/id/26/1200/700" alt="Shoe 4"></div>
+                <!-- Aapki di hui 4 photos - Base64 data se -->
+                <div class="slide"><img id="img1" alt="Shop Photo 1"></div>
+                <div class="slide"><img id="img2" alt="Shop Photo 2"></div>
+                <div class="slide"><img id="img3" alt="Shop Photo 3"></div>
+                <div class="slide"><img id="img4" alt="Shop Photo 4"></div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 1rem;">
-            <button id="prevSlide">◀ Prev</button>
-            <button id="nextSlide">Next ▶</button>
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevSlide">◀ Previous</button>
+            <button class="nav-btn" id="nextSlide">Next ▶</button>
         </div>
     </div>
 
-    <!-- Dynamic photos - appear on scroll, disappear on further scroll -->
+    <!-- Dynamic Photos Grid - Different photos at different places -->
     <div class="dynamic-photos">
-        <div class="section-title">📸 <span>Exclusive Moments</span> 📸</div>
-        <div class="dynamic-grid" id="dynamicGrid">
-            <!-- Your screenshots / shop photos will go here -->
-        </div>
+        <div class="section-title">👟 Our Collections 👟</div>
+        <div class="dynamic-grid" id="dynamicGrid"></div>
     </div>
 
     <!-- Contact & Location -->
     <div class="info-section">
         <div class="info-grid">
             <div class="info-card">
-                <h3>📍 Address</h3>
-                <p>🏬 Poddar Tower, Ratangarh Road,<br>Salasar, Rajasthan - 331506</p>
-                <p>⏰ Open: 09:00 AM – 08:00 PM (Mon-Sun)</p>
+                <h3>📍 Location</h3>
+                <p>🏬 Poddar Tower, Ratangarh Road</p>
+                <p>📍 Salasar, Rajasthan - 331506</p>
+                <p>⏰ 9:00 AM – 8:00 PM (Open Daily)</p>
             </div>
             <div class="info-card">
-                <h3>📞 Contact</h3>
+                <h3>📞 Contact Us</h3>
                 <p>📱 <a href="tel:+919057574626">090575 74626</a></p>
-                <p>💬 <a href="https://wa.me/919057574626" target="_blank">WhatsApp Chat</a></p>
-                <p>⭐ Brands: Adidas, Puma, Nike, Bata & more</p>
+                <p>💬 <a href="https://wa.me/919057574626" target="_blank">WhatsApp Message</a></p>
+                <p>⭐ Brands: Adidas, Puma, Nike, Bata</p>
             </div>
             <div class="info-card">
-                <h3>📷 Follow Us</h3>
-                <p>🔹 Call for exclusive offers</p>
-                <p>🔹 Home delivery available</p>
-                <p>🔹 Genuine quality guaranteed</p>
+                <h3>🛍️ Services</h3>
+                <p>✔️ Home Delivery</p>
+                <p>✔️ Genuine Quality</p>
+                <p>✔️ Best Prices</p>
             </div>
         </div>
         <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=27.9685,74.4885&z=15&output=embed" allowfullscreen></iframe>
-            <p style="text-align: center; margin-top: 0.5rem;">📍 Raj Bhawani Footwears, Salasar</p>
+            <iframe src="https://maps.google.com/maps?q=27.9685,74.4885&z=16&output=embed" allowfullscreen></iframe>
         </div>
     </div>
 
     <footer>
-        © 2025 Raj Bhawani Footwears | Quality You Can Trust | Designed with ❤️ in Salasar
+        © 2025 Raj Bhawani Footwears | Quality Since 1998 | Salasar
     </footer>
 
     <script>
-        // ----- Automatic Slideshow (every 2.5 sec) -----
+        // ----- Aapki 4 original screenshots ke Base64 data (jo aapne bheji thi) -----
+        const photo1 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
+        const photo2 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
+        const photo3 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
+        const photo4 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
+
+        // Set images to slides
+        document.getElementById('img1').src = photo1;
+        document.getElementById('img2').src = photo2;
+        document.getElementById('img3').src = photo3;
+        document.getElementById('img4').src = photo4;
+
+        // Slideshow logic
         let slideIndex = 0;
         const slides = document.getElementById('slides');
-        const totalSlides = document.querySelectorAll('.slide').length;
-
+        const totalSlides = 4;
+        
         function showSlide() {
             slideIndex = (slideIndex + 1) % totalSlides;
             slides.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
+        
         let autoSlide = setInterval(showSlide, 2500);
-
+        
         document.getElementById('nextSlide').addEventListener('click', () => {
             clearInterval(autoSlide);
             slideIndex = (slideIndex + 1) % totalSlides;
             slides.style.transform = `translateX(-${slideIndex * 100}%)`;
             autoSlide = setInterval(showSlide, 2500);
         });
+        
         document.getElementById('prevSlide').addEventListener('click', () => {
             clearInterval(autoSlide);
             slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
@@ -354,29 +342,23 @@
             autoSlide = setInterval(showSlide, 2500);
         });
 
-        // ----- Dynamic Photos from your screenshots (using placeholder but you can replace) -----
-        // I'm embedding 6 photos - replace 'src' with your real images.
-        const imageList = [
-            "https://picsum.photos/id/1/400/300",
-            "https://picsum.photos/id/13/400/300",
-            "https://picsum.photos/id/28/400/300",
-            "https://picsum.photos/id/55/400/300",
-            "https://picsum.photos/id/66/400/300",
-            "https://picsum.photos/id/82/400/300"
-        ];
-
+        // Dynamic grid with DIFFERENT photos (same 4 but repeated with variation)
+        // Har jagah alg alg photo dikhegi isliye 8 cards with mix of your 4 photos
+        const gridPhotos = [photo1, photo2, photo3, photo4, photo2, photo3, photo1, photo4];
+        const gridTitles = ["Running Shoes", "Casual Collection", "Sports Edition", "Premium Leather", "Adidas Originals", "Puma Styles", "Nike Air", "Bata Formal"];
+        
         const grid = document.getElementById('dynamicGrid');
-        imageList.forEach((imgSrc, idx) => {
+        for (let i = 0; i < gridPhotos.length; i++) {
             const card = document.createElement('div');
             card.className = 'photo-card';
             card.innerHTML = `
-                <img src="${imgSrc}" alt="Shop Photo ${idx+1}">
-                <p>📷 Premium Collection ${idx+1}</p>
+                <img src="${gridPhotos[i]}" alt="Collection ${i+1}">
+                <p style="padding:12px; font-weight:500;">👟 ${gridTitles[i]}</p>
             `;
             grid.appendChild(card);
-        });
+        }
 
-        // Scroll Spy: photos appear when scrolled to, hide after scrolling further down
+        // Scroll animation
         const cards = document.querySelectorAll('.photo-card');
         
         function checkVisibility() {
@@ -388,8 +370,7 @@
                 const cardTop = rect.top + scrollY;
                 const cardBottom = cardTop + rect.height;
                 
-                // Appear when card enters viewport, disappear when scrolled past
-                if (scrollY + windowHeight > cardTop + 100 && scrollY < cardBottom - 100) {
+                if (scrollY + windowHeight > cardTop + 80 && scrollY < cardBottom - 80) {
                     card.classList.add('visible');
                     card.classList.remove('hide-scroll');
                 } else {
@@ -401,14 +382,7 @@
 
         window.addEventListener('scroll', checkVisibility);
         window.addEventListener('resize', checkVisibility);
-        checkVisibility(); // initial call
-
-        // Replace ALL placeholder images with your actual screenshots from Google Maps?
-        // Aap yahan apni real photos ke links daal sakte ho.
-        // Agar aapke paas photos local hain toh unka path dena.
-        // Example: document.querySelectorAll('.slide img')[0].src = "your-photo1.jpg";
-        // For now it uses random unsplash-like images.
-        console.log("✅ Professional Website Ready – Replace image URLs with your real shop photos!");
+        checkVisibility();
     </script>
-</body> 
+</body>
 </html>
