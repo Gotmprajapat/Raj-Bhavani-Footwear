@@ -2,413 +2,413 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shiv Boot House – Best Shoes & Slippers in Sikar</title>
-    <!-- Google Fonts + Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Raj Bhawani Footwears | Premium Shoes</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #1e1e2a;
-            line-height: 1.5;
-        }
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-        /* Top bar */
-        .top-bar {
-            background: #2c2c3a;
-            color: #ddd;
-            font-size: 0.85rem;
-            padding: 10px 0;
-            text-align: center;
-        }
-        /* Header */
-        .header {
-            background: white;
-            padding: 18px 0;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #1e2a3e;
-        }
-        .logo span {
-            color: #c47c2e;
-        }
-        .nav a {
-            text-decoration: none;
-            color: #2d2f36;
-            margin-left: 28px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .nav a:hover { color: #c47c2e; }
-        .btn-call {
-            background: #c47c2e;
-            color: white;
-            padding: 10px 22px;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        /* Hero */
-        .hero {
-            background: #fef8f0;
-            padding: 60px 0;
-        }
-        .hero-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-            align-items: center;
-        }
-        .hero-text { flex: 1; }
-        .hero-text .badge {
-            background: #c47c2e20;
-            color: #b45a1b;
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        .hero-text h2 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        .hero-stats {
-            display: flex;
-            gap: 32px;
-            margin: 25px 0;
-        }
-        .stat h3 { font-size: 1.8rem; color: #c47c2e; }
-        .hero-image { flex: 1; text-align: center; }
-        .hero-image img { max-width: 100%; border-radius: 36px; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1); }
 
-        /* section titles */
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 40px;
+        body {
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #f1f1f1;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section with Big Name */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
         }
-        .section {
-            padding: 70px 0;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(0,0,0,0) 70%);
+            animation: rotateBg 20s linear infinite;
         }
-        /* Product Grid (exactly like Neemans style) */
-        .product-grid {
+
+        @keyframes rotateBg {
+            0% { transform: translate(-25%, -25%) rotate(0deg); }
+            100% { transform: translate(-25%, -25%) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 10vw, 5.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FFFFFF, #FFD700, #FFA500);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shine 3s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .hero h2 {
+            font-size: clamp(1rem, 4vw, 1.8rem);
+            font-weight: 400;
+            color: #ccc;
+            margin-top: 1rem;
+            border-top: 2px solid #ffd700;
+            display: inline-block;
+            padding-top: 1rem;
+        }
+
+        /* Auto Slideshow Gallery Section */
+        .gallery-section {
+            padding: 4rem 2rem;
+            background: #0f0f0f;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title span {
+            color: #ffd700;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 5px;
+        }
+
+        .slideshow-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            aspect-ratio: 16 / 9;
+        }
+
+        .slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Scroll Spy Section - Photos that load and hide on scroll */
+        .dynamic-photos {
+            padding: 4rem 2rem;
+            background: #050505;
+        }
+
+        .dynamic-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .product-card {
-            background: white;
+
+        .photo-card {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
             border-radius: 24px;
             overflow: hidden;
-            transition: 0.2s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #f0f0f0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15);
+
+        .photo-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .product-img {
+
+        .photo-card.hide-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .photo-card img {
             width: 100%;
-            height: 240px;
+            height: 280px;
             object-fit: cover;
-            background: #f9f3ea;
-        }
-        .product-info {
-            padding: 18px;
-        }
-        .product-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        .price {
-            color: #c47c2e;
-            font-weight: 700;
-            margin: 8px 0;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.85rem;
-            margin-left: 8px;
+            transition: transform 0.4s;
         }
 
-        /* customer reviews */
-        .review-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 28px;
-            margin-top: 20px;
+        .photo-card:hover img {
+            transform: scale(1.05);
         }
-        .review-card {
-            background: #fefaf5;
-            padding: 24px;
-            border-radius: 28px;
-            border-left: 4px solid #c47c2e;
-        }
-        .stars { color: #f5b642; margin-bottom: 12px; }
 
-        /* contact & map */
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-        .map-box {
-            flex: 1.2;
-            min-height: 380px;
-            border-radius: 32px;
-            overflow: hidden;
-        }
-        .info-box {
-            flex: 1;
-            background: #fef8f0;
-            padding: 32px;
-            border-radius: 32px;
-        }
-        .info-item {
-            display: flex;
-            gap: 18px;
-            margin-bottom: 28px;
-            align-items: center;
-        }
-        .info-item i { font-size: 1.5rem; color: #c47c2e; width: 32px; }
-        .open-status {
-            background: #2e7d32;
-            color: white;
-            padding: 5px 14px;
-            border-radius: 40px;
-            display: inline-block;
-            font-size: 0.8rem;
-        }
-        footer {
-            background: #1e293b;
-            color: #ccc;
+        .photo-card p {
+            background: #1e1e2e;
+            padding: 0.8rem;
             text-align: center;
-            padding: 40px 0;
+            font-weight: 500;
         }
-        @media (max-width: 780px) {
-            .container { padding: 0 20px; }
-            .hero-text h2 { font-size: 2rem; }
-            .nav a { margin-left: 16px; }
+
+        /* Info & Location Section */
+        .info-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(145deg, #111111, #1a1a1a);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: rgba(30,30,46,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            border-color: #ffd700;
+        }
+
+        .info-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .info-card p, .info-card a {
+            font-size: 1.1rem;
+            margin: 0.8rem 0;
+            color: #ddd;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card a:hover {
+            color: #ffd700;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 28px;
+            overflow: hidden;
+            height: 350px;
+            border: 2px solid #ffd700;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #000;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 1.8rem; }
+            .info-card h3 { font-size: 1.4rem; }
+        }
+
+        button {
+            background: #ffd700;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    🚚 Walk in & Grab Best Offers | Free Size Exchange
-</div>
-
-<div class="header">
-    <div class="container header-flex">
-        <div class="logo">
-            <h1>SHIV <span>BOOT HOUSE</span></h1>
-            <p style="font-size: 0.8rem;">Sikar's Trusted Footwear Since 1995</p>
-        </div>
-        <div class="nav">
-            <a href="#">Home</a>
-            <a href="#products">Shoes</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#contact">Store</a>
-            <a href="tel:+919462018853" class="btn-call"><i class="fas fa-phone"></i> Call</a>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>राज भवानी फुटवियर्स</h1>
+            <h2>Raj Bhawani Footwears</h2>
+            <p style="margin-top: 2rem;">👟 Premium Quality Shoes | Since 1998</p>
         </div>
     </div>
-</div>
 
-<!-- Hero -->
-<section class="hero">
-    <div class="container hero-grid">
-        <div class="hero-text">
-            <div class="badge"><i class="fas fa-store"></i> Premium Quality · Best Price</div>
-            <h2>Step Into Comfort & Style</h2>
-            <p>✔️ Formal, Casual, Slippers & Kids collection — sab kuch ek hi jagah. <strong>Price reasonable, quality top class</strong> ⭐</p>
-            <div class="hero-stats">
-                <div class="stat"><h3>5000+</h3><span>Happy Customers</span></div>
-                <div class="stat"><h3>1000+</h3><span>Products</span></div>
-            </div>
-            <div style="margin-top: 20px;">
-                <a href="#contact" class="btn-call" style="background:#1e2a3e;"><i class="fas fa-location-dot"></i> Get Direction</a>
-                <a href="#products" style="margin-left: 16px; font-weight: 600;">View Collections →</a>
+    <!-- Auto-changing photos slider -->
+    <div class="gallery-section">
+        <div class="section-title">✨ <span>Our Gallery</span> ✨</div>
+        <div class="slideshow-container">
+            <div class="slides" id="slides">
+                <!-- These are dummy professional shoe images, replace with your real photos -->
+                <div class="slide"><img src="https://picsum.photos/id/20/1200/700" alt="Shoe 1"></div>
+                <div class="slide"><img src="https://picsum.photos/id/96/1200/700" alt="Shoe 2"></div>
+                <div class="slide"><img src="https://picsum.photos/id/42/1200/700" alt="Shoe 3"></div>
+                <div class="slide"><img src="https://picsum.photos/id/26/1200/700" alt="Shoe 4"></div>
             </div>
         </div>
-        <div class="hero-image">
-            <img src="https://placehold.co/600x450/f5e5d5/c47c2e?text=Shiv+Boot+House+Showroom&font=montserrat" alt="Shop display">
+        <div style="text-align: center; margin-top: 1rem;">
+            <button id="prevSlide">◀ Prev</button>
+            <button id="nextSlide">Next ▶</button>
         </div>
     </div>
-</section>
 
-<!-- Product Section with REAL SHOE PHOTOS -->
-<div class="container" id="products">
-    <div class="section">
-        <h2 class="section-title">🔥 Our Best Selling Footwear</h2>
-        <div class="product-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop" alt="Men's Sports Shoes">
-                <div class="product-info">
-                    <div class="product-title">Men's Sports Sneakers</div>
-                    <div class="price">₹899 <span class="old-price">₹1599</span></div>
-                    <p style="font-size:0.85rem;">Ultra-light, memory foam</p>
-                </div>
-            </div>
-            <!-- Product 2 -->
-            <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=300&fit=crop" alt="Leather Formal Shoes">
-                <div class="product-info">
-                    <div class="product-title">Premium Leather Formal</div>
-                    <div class="price">₹1299 <span class="old-price">₹2499</span></div>
-                    <p style="font-size:0.85rem;">Office & party wear</p>
-                </div>
-            </div>
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&h=300&fit=crop" alt="Comfy Slippers">
-                <div class="product-info">
-                    <div class="product-title">Hawai Chappal (Slippers)</div>
-                    <div class="price">₹299 <span class="old-price">₹599</span></div>
-                    <p style="font-size:0.85rem;">Soft sole, daily wear</p>
-                </div>
-            </div>
-            <!-- Product 4 -->
-            <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=300&fit=crop" alt="Casual Loafers">
-                <div class="product-info">
-                    <div class="product-title">Trendy Loafers</div>
-                    <div class="price">₹1099 <span class="old-price">₹1999</span></div>
-                    <p style="font-size:0.85rem;">Stylish & breathable</p>
-                </div>
-            </div>
-            <!-- Product 5 -->
-            <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=400&h=300&fit=crop" alt="Kids shoes">
-                <div class="product-info">
-                    <div class="product-title">Kids Running Shoes</div>
-                    <div class="price">₹649 <span class="old-price">₹1199</span></div>
-                    <p style="font-size:0.85rem;">Colorful, non-slip</p>
-                </div>
-            </div>
-            <!-- Product 6 -->
-            <div class="product-card">
-                <img class="product-img" src="https://images.unsplash.com/photo-1608256249700-8e49b2b5d88e?w=400&h=300&fit=crop" alt="Women's sandals">
-                <div class="product-info">
-                    <div class="product-title">Women's Fashion Sandals</div>
-                    <div class="price">₹799 <span class="old-price">₹1499</span></div>
-                    <p style="font-size:0.85rem;">Lightweight & trendy</p>
-                </div>
-            </div>
+    <!-- Dynamic photos - appear on scroll, disappear on further scroll -->
+    <div class="dynamic-photos">
+        <div class="section-title">📸 <span>Exclusive Moments</span> 📸</div>
+        <div class="dynamic-grid" id="dynamicGrid">
+            <!-- Your screenshots / shop photos will go here -->
         </div>
     </div>
-</div>
 
-<!-- Customer Reviews (Real Google Review Wala) -->
-<div class="container" id="reviews">
-    <div class="section">
-        <h2 class="section-title">⭐ What Our Customers Say</h2>
-        <div class="review-grid">
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p><i class="fas fa-quote-left"></i> shoes, slippers all are very nice and price also reasonable... Must visit in Sikar!</p>
-                <p style="margin-top: 12px; font-weight: 600;">— Verified Google review</p>
+    <!-- Contact & Location -->
+    <div class="info-section">
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📍 Address</h3>
+                <p>🏬 Poddar Tower, Ratangarh Road,<br>Salasar, Rajasthan - 331506</p>
+                <p>⏰ Open: 09:00 AM – 08:00 PM (Mon-Sun)</p>
             </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p><i class="fas fa-quote-left"></i> Best quality leather shoes at budget price. Bahut badhiya shop hai.</p>
-                <p style="margin-top: 12px; font-weight: 600;">— Ramesh S.</p>
+            <div class="info-card">
+                <h3>📞 Contact</h3>
+                <p>📱 <a href="tel:+919057574626">090575 74626</a></p>
+                <p>💬 <a href="https://wa.me/919057574626" target="_blank">WhatsApp Chat</a></p>
+                <p>⭐ Brands: Adidas, Puma, Nike, Bata & more</p>
             </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p><i class="fas fa-quote-left"></i> Family shopping ke liye perfect, sabhi type ke chappal mil gaye.</p>
-                <p style="margin-top: 12px; font-weight: 600;">— Sunita Meena</p>
+            <div class="info-card">
+                <h3>📷 Follow Us</h3>
+                <p>🔹 Call for exclusive offers</p>
+                <p>🔹 Home delivery available</p>
+                <p>🔹 Genuine quality guaranteed</p>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- Contact + Exact Google Map Location (Salasar Stand, Mohalla Jamidaran) -->
-<div class="container" id="contact">
-    <div class="section">
-        <h2 class="section-title">📍 Visit Our Store</h2>
-        <div class="contact-grid">
-            <div class="map-box">
-                <!-- Exact location: near Salasar Stand, Mohalla Jamidaran, Sikar -->
-                <iframe 
-                    src="https://maps.google.com/maps?q=Salasar+Stand+Mohalla+Jamidaran+Sikar+Rajasthan+332001&t=&z=18&ie=UTF8&iwloc=&output=embed" 
-                    width="100%" height="100%" style="border:0; min-height: 380px;" allowfullscreen="" loading="lazy">
-                </iframe>
-            </div>
-            <div class="info-box">
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div><strong>Shiv Boot House</strong><br>near Salasar Stand, Mohalla Jamidaran, Sikar, Rajasthan 332001</div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <div><a href="tel:+919462018853" style="text-decoration:none;color:#c47c2e;">094620 18853</a></div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-clock"></i>
-                    <div><span class="open-status"><i class="fas fa-circle" style="font-size: 0.6rem;"></i> Open Now · Closes 9 PM</span><br>Monday–Sunday: 10 AM – 9 PM</div>
-                </div>
-                <div style="margin-top: 20px;">
-                    <a href="https://maps.google.com/?q=Salasar+Stand+Mohalla+Jamidaran+Sikar" target="_blank" class="btn-call" style="background:#1e2a3e; display:inline-block;">Open in Google Maps <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <p style="margin-top: 28px;"><i class="fas fa-truck"></i> Home delivery available within Sikar city.</p>
-            </div>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=27.9685,74.4885&z=15&output=embed" allowfullscreen></iframe>
+            <p style="text-align: center; margin-top: 0.5rem;">📍 Raj Bhawani Footwears, Salasar</p>
         </div>
     </div>
-</div>
 
-<footer>
-    <div class="container">
-        <p>© 2026 Shiv Boot House — Quality Footwear Since 1995 | near Salasar Stand, Sikar</p>
-        <p style="margin-top: 12px;"><i class="fas fa-heart"></i> Walk with confidence, comfort & style.</p>
-    </div>
-</footer>
+    <footer>
+        © 2025 Raj Bhawani Footwears | Quality You Can Trust | Designed with ❤️ in Salasar
+    </footer>
 
-<script>
-    // smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if(href !== "#") {
-                const target = document.querySelector(href);
-                if(target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
+    <script>
+        // ----- Automatic Slideshow (every 2.5 sec) -----
+        let slideIndex = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlide() {
+            slideIndex = (slideIndex + 1) % totalSlides;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+        let autoSlide = setInterval(showSlide, 2500);
+
+        document.getElementById('nextSlide').addEventListener('click', () => {
+            clearInterval(autoSlide);
+            slideIndex = (slideIndex + 1) % totalSlides;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+            autoSlide = setInterval(showSlide, 2500);
         });
-    });
-</script>
-</body>
+        document.getElementById('prevSlide').addEventListener('click', () => {
+            clearInterval(autoSlide);
+            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+            autoSlide = setInterval(showSlide, 2500);
+        });
+
+        // ----- Dynamic Photos from your screenshots (using placeholder but you can replace) -----
+        // I'm embedding 6 photos - replace 'src' with your real images.
+        const imageList = [
+            "https://picsum.photos/id/1/400/300",
+            "https://picsum.photos/id/13/400/300",
+            "https://picsum.photos/id/28/400/300",
+            "https://picsum.photos/id/55/400/300",
+            "https://picsum.photos/id/66/400/300",
+            "https://picsum.photos/id/82/400/300"
+        ];
+
+        const grid = document.getElementById('dynamicGrid');
+        imageList.forEach((imgSrc, idx) => {
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            card.innerHTML = `
+                <img src="${imgSrc}" alt="Shop Photo ${idx+1}">
+                <p>📷 Premium Collection ${idx+1}</p>
+            `;
+            grid.appendChild(card);
+        });
+
+        // Scroll Spy: photos appear when scrolled to, hide after scrolling further down
+        const cards = document.querySelectorAll('.photo-card');
+        
+        function checkVisibility() {
+            const windowHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+            
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardTop = rect.top + scrollY;
+                const cardBottom = cardTop + rect.height;
+                
+                // Appear when card enters viewport, disappear when scrolled past
+                if (scrollY + windowHeight > cardTop + 100 && scrollY < cardBottom - 100) {
+                    card.classList.add('visible');
+                    card.classList.remove('hide-scroll');
+                } else {
+                    card.classList.remove('visible');
+                    card.classList.add('hide-scroll');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('resize', checkVisibility);
+        checkVisibility(); // initial call
+
+        // Replace ALL placeholder images with your actual screenshots from Google Maps?
+        // Aap yahan apni real photos ke links daal sakte ho.
+        // Agar aapke paas photos local hain toh unka path dena.
+        // Example: document.querySelectorAll('.slide img')[0].src = "your-photo1.jpg";
+        // For now it uses random unsplash-like images.
+        console.log("✅ Professional Website Ready – Replace image URLs with your real shop photos!");
+    </script>
+</body> 
 </html>
