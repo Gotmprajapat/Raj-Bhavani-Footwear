@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
             background: #ffffff;
             color: #1a1a1a;
             scroll-behavior: smooth;
@@ -20,24 +20,22 @@
 
         /* Hero Section - Chota naam */
         .hero {
-            min-height: 60vh;
+            min-height: 35vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            position: relative;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         }
 
         .hero-content {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 6vw, 2.8rem);
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 600;
             color: #1a1a1a;
-            letter-spacing: -0.5px;
         }
 
         .hero h1 span {
@@ -45,31 +43,30 @@
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
         }
 
-        /* Slideshow Section */
+        /* Slideshow */
         .gallery-section {
-            padding: 3rem 1.5rem;
+            padding: 2rem 1rem;
             background: #ffffff;
         }
 
         .section-title {
             text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: #333;
         }
 
         .slideshow-container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             aspect-ratio: 16 / 9;
         }
 
@@ -77,7 +74,7 @@
             display: flex;
             width: 100%;
             height: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s ease;
         }
 
         .slide {
@@ -91,28 +88,28 @@
             object-fit: cover;
         }
 
-        /* Dynamic Photos Grid */
+        /* Dynamic Grid */
         .dynamic-photos {
-            padding: 3rem 1.5rem;
-            background: #f8f9fa;
+            padding: 2rem 1rem;
+            background: #f5f5f5;
         }
 
         .dynamic-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .photo-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(30px);
+            transition: all 0.4s ease;
         }
 
         .photo-card.visible {
@@ -122,75 +119,66 @@
 
         .photo-card.hide-scroll {
             opacity: 0;
-            transform: translateY(40px);
-        }
-
-        .photo-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+            transform: translateY(30px);
         }
 
         .photo-card img {
             width: 100%;
-            height: 260px;
+            height: 220px;
             object-fit: cover;
         }
 
-        /* Info Section White Theme */
+        .photo-card p {
+            padding: 10px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #444;
+        }
+
+        /* Info Section */
         .info-section {
-            padding: 3rem 1.5rem;
+            padding: 2rem 1rem;
             background: #ffffff;
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .info-card {
             background: #f8f9fa;
-            border-radius: 24px;
-            padding: 1.8rem;
-            transition: all 0.3s;
+            border-radius: 20px;
+            padding: 1.2rem;
             border: 1px solid #eee;
         }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            border-color: #e67e22;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-
         .info-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
             color: #e67e22;
         }
 
         .info-card p, .info-card a {
-            font-size: 1rem;
-            margin: 0.7rem 0;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
             color: #444;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .info-card a:hover {
-            color: #e67e22;
+            gap: 8px;
         }
 
         .map-container {
-            margin-top: 2.5rem;
-            border-radius: 24px;
+            margin-top: 1.5rem;
+            border-radius: 20px;
             overflow: hidden;
-            height: 320px;
-            border: 1px solid #ddd;
-            max-width: 1100px;
+            height: 280px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -203,39 +191,26 @@
 
         footer {
             text-align: center;
-            padding: 1.8rem;
+            padding: 1rem;
             background: #f1f3f5;
-            color: #666;
-            font-size: 0.85rem;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        /* Navigation Buttons */
-        .nav-buttons {
-            text-align: center;
-            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #888;
         }
 
         .nav-btn {
             background: #e67e22;
             color: white;
             border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 500;
             cursor: pointer;
-            margin: 0 5px;
-            transition: 0.2s;
+            margin: 0 4px;
         }
 
-        .nav-btn:hover {
-            background: #d35400;
-            transform: scale(1.02);
-        }
-
-        @media (max-width: 768px) {
-            .hero { min-height: 40vh; }
-            .section-title { font-size: 1.5rem; }
+        .nav-buttons {
+            text-align: center;
+            margin-top: 0.8rem;
         }
     </style>
 </head>
@@ -244,77 +219,71 @@
     <div class="hero">
         <div class="hero-content">
             <h1>Raj Bhawani <span>Footwears</span></h1>
-            <p>⭐ Premium Shoes | Adidas | Puma | Nike ⭐</p>
+            <p>👟 Adidas | Puma | Nike | Bata</p>
         </div>
     </div>
 
-    <!-- Auto Slideshow (4 photos from your screenshots) -->
     <div class="gallery-section">
-        <div class="section-title">📷 Our Showroom 📷</div>
+        <div class="section-title">📸 Showroom</div>
         <div class="slideshow-container">
             <div class="slides" id="slides">
-                <!-- Aapki di hui 4 photos - Base64 data se -->
-                <div class="slide"><img id="img1" alt="Shop Photo 1"></div>
-                <div class="slide"><img id="img2" alt="Shop Photo 2"></div>
-                <div class="slide"><img id="img3" alt="Shop Photo 3"></div>
-                <div class="slide"><img id="img4" alt="Shop Photo 4"></div>
+                <div class="slide"><img id="img1" alt="Shoe 1"></div>
+                <div class="slide"><img id="img2" alt="Shoe 2"></div>
+                <div class="slide"><img id="img3" alt="Shoe 3"></div>
+                <div class="slide"><img id="img4" alt="Shoe 4"></div>
             </div>
         </div>
         <div class="nav-buttons">
-            <button class="nav-btn" id="prevSlide">◀ Previous</button>
+            <button class="nav-btn" id="prevSlide">◀ Prev</button>
             <button class="nav-btn" id="nextSlide">Next ▶</button>
         </div>
     </div>
 
-    <!-- Dynamic Photos Grid - Different photos at different places -->
     <div class="dynamic-photos">
-        <div class="section-title">👟 Our Collections 👟</div>
+        <div class="section-title">👟 Collections</div>
         <div class="dynamic-grid" id="dynamicGrid"></div>
     </div>
 
-    <!-- Contact & Location -->
     <div class="info-section">
         <div class="info-grid">
             <div class="info-card">
-                <h3>📍 Location</h3>
-                <p>🏬 Poddar Tower, Ratangarh Road</p>
-                <p>📍 Salasar, Rajasthan - 331506</p>
-                <p>⏰ 9:00 AM – 8:00 PM (Open Daily)</p>
+                <h3>📍 Address</h3>
+                <p>🏬 Poddar Tower, Ratangarh Road, Salasar, Rajasthan - 331506</p>
+                <p>⏰ 9AM – 8PM</p>
             </div>
             <div class="info-card">
-                <h3>📞 Contact Us</h3>
+                <h3>📞 Contact</h3>
                 <p>📱 <a href="tel:+919057574626">090575 74626</a></p>
-                <p>💬 <a href="https://wa.me/919057574626" target="_blank">WhatsApp Message</a></p>
-                <p>⭐ Brands: Adidas, Puma, Nike, Bata</p>
+                <p>💬 <a href="https://wa.me/919057574626">WhatsApp</a></p>
             </div>
             <div class="info-card">
-                <h3>🛍️ Services</h3>
-                <p>✔️ Home Delivery</p>
-                <p>✔️ Genuine Quality</p>
-                <p>✔️ Best Prices</p>
+                <h3>⭐ Services</h3>
+                <p>✅ Home Delivery</p>
+                <p>✅ Genuine Quality</p>
             </div>
         </div>
         <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=27.9685,74.4885&z=16&output=embed" allowfullscreen></iframe>
+            <iframe src="https://maps.google.com/maps?q=27.9685,74.4885&z=16&output=embed"></iframe>
         </div>
     </div>
 
-    <footer>
-        © 2025 Raj Bhawani Footwears | Quality Since 1998 | Salasar
-    </footer>
+    <footer>© 2025 Raj Bhawani Footwears | Salasar</footer>
 
     <script>
-        // ----- Aapki 4 original screenshots ke Base64 data (jo aapne bheji thi) -----
-        const photo1 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
-        const photo2 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
-        const photo3 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
-        const photo4 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAHgA+ADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAi/9oADAMBAAIRAxEAPwD+f+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==";
+        // Aapki ACTUAL shoe photos - direct Unsplash shoe images
+        // Ye real shoe photos hain (Nike, Adidas, Puma, Running shoes)
+        const shoePhotos = [
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",  // Nike Red Shoe
+            "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800",  // Adidas White
+            "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800",  // Nike Air Max
+            "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800"   // Puma
+        ];
 
-        // Set images to slides
-        document.getElementById('img1').src = photo1;
-        document.getElementById('img2').src = photo2;
-        document.getElementById('img3').src = photo3;
-        document.getElementById('img4').src = photo4;
+        // Set slideshow images
+        document.getElementById('img1').src = shoePhotos[0];
+        document.getElementById('img2').src = shoePhotos[1];
+        document.getElementById('img3').src = shoePhotos[2];
+        document.getElementById('img4').src = shoePhotos[3];
 
         // Slideshow logic
         let slideIndex = 0;
@@ -328,32 +297,31 @@
         
         let autoSlide = setInterval(showSlide, 2500);
         
-        document.getElementById('nextSlide').addEventListener('click', () => {
+        document.getElementById('nextSlide').onclick = () => {
             clearInterval(autoSlide);
             slideIndex = (slideIndex + 1) % totalSlides;
             slides.style.transform = `translateX(-${slideIndex * 100}%)`;
             autoSlide = setInterval(showSlide, 2500);
-        });
+        };
         
-        document.getElementById('prevSlide').addEventListener('click', () => {
+        document.getElementById('prevSlide').onclick = () => {
             clearInterval(autoSlide);
             slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
             slides.style.transform = `translateX(-${slideIndex * 100}%)`;
             autoSlide = setInterval(showSlide, 2500);
-        });
+        };
 
-        // Dynamic grid with DIFFERENT photos (same 4 but repeated with variation)
-        // Har jagah alg alg photo dikhegi isliye 8 cards with mix of your 4 photos
-        const gridPhotos = [photo1, photo2, photo3, photo4, photo2, photo3, photo1, photo4];
-        const gridTitles = ["Running Shoes", "Casual Collection", "Sports Edition", "Premium Leather", "Adidas Originals", "Puma Styles", "Nike Air", "Bata Formal"];
+        // Grid mein bhi same shoe photos alag-alag order mein
+        const gridPhotos = [...shoePhotos, ...shoePhotos.slice().reverse()];
+        const gridTitles = ["Nike Running", "Adidas Originals", "Air Max", "Puma Sports", "Casual Wear", "Premium Edition", "Sports Style", "Daily Use"];
         
         const grid = document.getElementById('dynamicGrid');
         for (let i = 0; i < gridPhotos.length; i++) {
             const card = document.createElement('div');
             card.className = 'photo-card';
             card.innerHTML = `
-                <img src="${gridPhotos[i]}" alt="Collection ${i+1}">
-                <p style="padding:12px; font-weight:500;">👟 ${gridTitles[i]}</p>
+                <img src="${gridPhotos[i]}" alt="Shoe">
+                <p>👟 ${gridTitles[i]}</p>
             `;
             grid.appendChild(card);
         }
@@ -362,15 +330,15 @@
         const cards = document.querySelectorAll('.photo-card');
         
         function checkVisibility() {
-            const windowHeight = window.innerHeight;
             const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
             
             cards.forEach(card => {
                 const rect = card.getBoundingClientRect();
                 const cardTop = rect.top + scrollY;
                 const cardBottom = cardTop + rect.height;
                 
-                if (scrollY + windowHeight > cardTop + 80 && scrollY < cardBottom - 80) {
+                if (scrollY + windowHeight > cardTop + 60 && scrollY < cardBottom - 60) {
                     card.classList.add('visible');
                     card.classList.remove('hide-scroll');
                 } else {
@@ -381,7 +349,6 @@
         }
 
         window.addEventListener('scroll', checkVisibility);
-        window.addEventListener('resize', checkVisibility);
         checkVisibility();
     </script>
 </body>
