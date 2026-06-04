@@ -1,139 +1,500 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Script to Video Generator</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Shiv Boot House - Sikar | Quality Shoes & Slippers</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fef9f0;
+            color: #2c1a0e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header / navbar */
+        .navbar {
+            background: #2e241f;
+            color: white;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        .logo p {
+            font-size: 0.85rem;
+            color: #f0c674;
+            letter-spacing: 1px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #f5b642;
+        }
+        .nav-links i {
+            margin-right: 6px;
+        }
+
+        /* hero section */
+        .hero {
+            background: linear-gradient(105deg, #fff2e0 0%, #fbe9d2 100%);
+            padding: 60px 0 50px;
+            border-bottom: 1px solid #eedbc8;
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-content .badge {
+            background: #d9a13b20;
+            color: #b6621a;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: #2e241f;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #4a3729;
+            margin-bottom: 28px;
+            max-width: 90%;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin: 30px 0 20px;
+        }
+        .stat {
+            text-align: left;
+        }
+        .stat h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #c47c2e;
+        }
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #c47c2e;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 44px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: #a7621f;
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #c47c2e;
+            color: #c47c2e;
+            padding: 10px 26px;
+            border-radius: 44px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #c47c2e20;
+        }
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 64px 24px 64px 24px;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
+        }
+
+        /* features / why us */
+        .section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 48px;
+            color: #2e241f;
+        }
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+        .feature-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 32px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: 0.2s;
+            border: 1px solid #f3e5d8;
+        }
+        .feature-card i {
+            font-size: 2.6rem;
+            color: #c47c2e;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        /* products preview */
+        .products-preview {
+            background: #fff6ed;
+        }
+        .product-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .product-item {
+            background: white;
+            border-radius: 32px;
+            padding: 20px;
+            text-align: center;
+            width: 260px;
+            transition: 0.2s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .product-item i {
+            font-size: 4rem;
+            color: #8b5a2b;
+            margin: 20px 0 10px;
+        }
+        .product-item h4 {
+            font-size: 1.3rem;
+            margin: 12px 0 6px;
+        }
+        .product-item p {
+            color: #a7621f;
+            font-weight: 500;
+        }
+
+        /* review section ( customer highlight ) */
+        .review-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+            border-left: 6px solid #c47c2e;
+        }
+        .review-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 15px 0;
+            color: #2e241f;
+        }
+        .review-author {
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .stars {
+            color: #f5b642;
+            letter-spacing: 3px;
+        }
+
+        /* map & contact section */
+        .contact-section {
+            background: #fff;
+        }
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .map-box {
+            flex: 1.2;
+            min-height: 320px;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .info-box {
+            flex: 1;
+            background: #fef3e8;
+            padding: 28px;
+            border-radius: 32px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .info-item i {
+            font-size: 1.6rem;
+            color: #c47c2e;
+            width: 36px;
+        }
+        .info-item a {
+            color: #2e241f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .hours {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 2px dashed #e9cfb5;
+        }
+        .open-status {
+            background: #2e7d32;
+            color: white;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            background: #2e241f;
+            color: #ddc7b5;
+            text-align: center;
+            padding: 32px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 780px) {
+            .nav-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links a {
+                margin: 0 12px;
+            }
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .hero-grid {
+                flex-direction: column;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <!-- Top Banner Ad Space - Google AdSense -->
-    <div class="ad-container top-ad">
-        <div class="ad-label">Advertisement</div>
-        <!-- Google AdSense code will go here -->
-        <div class="ad-placeholder">728x90 Ad Space</div>
+
+<!-- Navigation -->
+<div class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">
+            <h1>👞 Shiv Boot House</h1>
+            <p>Quality since 1995</p>
+        </div>
+        <div class="nav-links">
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+            <a href="#products"><i class="fas fa-shoe-prints"></i> Products</a>
+            <a href="#contact"><i class="fas fa-map-marker-alt"></i> Visit</a>
+            <a href="tel:+919462018853"><i class="fas fa-phone-alt"></i> Call</a>
+        </div>
     </div>
+</div>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>🎬 Script to Video Generator</h1>
-            <p class="subtitle">Turn your scripts into engaging videos with AI</p>
-        </header>
-
-        <!-- Main Content Area with Sidebar Ad -->
-        <div class="main-content">
-            <!-- Sidebar Ad Space - Google AdSense -->
-            <div class="sidebar-ad">
-                <div class="ad-label">Advertisement</div>
-                <div class="ad-placeholder">160x600 Ad Space</div>
+<!-- Hero Section -->
+<section id="home">
+    <div class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="badge"><i class="fas fa-store"></i> Sikar's Trusted Footwear Hub</div>
+                <h2>Step into <br>Style & Comfort</h2>
+                <p>✔️ Premium quality shoes & slippers | ✔️ Reasonable prices | ✔️ Family-owned since decades</p>
+                <div class="hero-stats">
+                    <div class="stat"><h3>5000+</h3><span>Happy Feet</span></div>
+                    <div class="stat"><h3>1000+</h3><span>Products</span></div>
+                </div>
+                <div class="btn-group">
+                    <a href="#contact" class="btn-primary"><i class="fas fa-location-dot"></i> Get Direction</a>
+                    <a href="tel:+919462018853" class="btn-outline"><i class="fas fa-phone"></i> Call Now</a>
+                </div>
             </div>
+            <div class="hero-image">
+                <!-- decorative image: showcase shoes silhouette -->
+                <img src="https://placehold.co/600x400/fef0e2/c47c2e?text=SHIV+BOOT+HOUSE&font=montserrat" alt="Shiv Boot House showcase" style="background:#f5e2ce;">
+            </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Generator Area -->
-            <div class="generator-area">
-                <!-- Script Input -->
-                <div class="input-section">
-                    <label for="script">📝 Enter Your Script</label>
-                    <textarea 
-                        id="script" 
-                        placeholder="Write or paste your script here... (max 1000 characters)"
-                        maxlength="1000"
-                    ></textarea>
-                    <div class="char-counter">
-                        <span id="charCount">0</span>/1000
+<!-- Why Choose Us -->
+<div class="container section">
+    <h2 class="section-title">Why Shiv Boot House?</h2>
+    <div class="features-grid">
+        <div class="feature-card"><i class="fas fa-tag"></i><h3>Best Prices</h3><p>Direct source, no middleman – always reasonable rates.</p></div>
+        <div class="feature-card"><i class="fas fa-hand-peace"></i><h3>Premium Quality</h3><p>Leather, PU & trendy slippers that last long.</p></div>
+        <div class="feature-card"><i class="fas fa-smile"></i><h3>Happy Customers</h3><p>Thousands of loyal customers in Sikar & nearby.</p></div>
+        <div class="feature-card"><i class="fas fa-exchange-alt"></i><h3>Easy Exchange</h3><p>Customer-first return & size exchange policy.</p></div>
+    </div>
+</div>
+
+<!-- Product showcase -->
+<section id="products" class="products-preview">
+    <div class="container section">
+        <h2 class="section-title">👟 Our Specialties</h2>
+        <div class="product-row">
+            <div class="product-item"><i class="fas fa-shoe-prints"></i><h4>Formal Shoes</h4><p>Premium leather • Office & party wear</p><span style="color:#b97f2e;">₹599 - 1499</span></div>
+            <div class="product-item"><i class="fas fa-hiking"></i><h4>Casual Sneakers</h4><p>Ultra-comfort • Daily use</p><span style="color:#b97f2e;">₹499 - 1299</span></div>
+            <div class="product-item"><i class="fas fa-umbrella-beach"></i><h4>Hawai Chappal</h4><p>Durable rubber & PVA • Grip sole</p><span style="color:#b97f2e;">₹199 - 499</span></div>
+            <div class="product-item"><i class="fas fa-child"></i><h4>Kids Collection</h4><p>Colorful designs • Soft sole</p><span style="color:#b97f2e;">₹299 - 799</span></div>
+        </div>
+        <div style="text-align:center; margin-top: 32px;">
+            <a href="#contact" class="btn-primary"><i class="fas fa-store"></i> Visit Store & Explore More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Customer review highlight (exact Google review feeling) -->
+<div class="container section">
+    <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"shoes, slippers all are very nice and price also reasonable... Must visit in Sikar!"</div>
+        <div class="review-author">— Verified Customer (Google review)</div>
+        <i class="fab fa-google" style="color:#c47c2e; margin-top: 12px; display: inline-block;"></i>
+    </div>
+</div>
+
+<!-- Contact + Google Map Section -->
+<section id="contact">
+    <div class="container section contact-section">
+        <h2 class="section-title">📍 Store Location & Hours</h2>
+        <div class="contact-grid">
+            <div class="map-box">
+                <!-- Google Maps Static + dynamic link - Embed actual location near Salasar Stand, Sikar -->
+                <iframe 
+                    src="https://maps.google.com/maps?q=Salasar+Stand+Mohalla+Jamidaran+Sikar+Rajasthan&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" height="100%" style="border:0; min-height: 320px;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+            <div class="info-box">
+                <div class="info-item">
+                    <i class="fas fa-map-pin"></i>
+                    <div><strong>Shiv Boot House</strong><br>near Salasar Stand, Mohalla Jamidaran, Sikar, Rajasthan 332001</div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div><a href="tel:+919462018853">094620 18853</a> (Call for inquiries)</div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span class="open-status"><i class="fas fa-circle" style="font-size: 0.6rem;"></i> Open now · Closes 9 PM</span><br>
+                        Monday - Sunday : 10:00 AM – 9:00 PM
                     </div>
                 </div>
-
-                <!-- Controls Grid -->
-                <div class="controls-grid">
-                    <!-- Voice Type -->
-                    <div class="control-item">
-                        <label>🎤 Voice Type</label>
-                        <select id="voiceType">
-                            <option value="male">Male Voice</option>
-                            <option value="female" selected>Female Voice</option>
-                        </select>
-                    </div>
-
-                    <!-- Speech Speed -->
-                    <div class="control-item">
-                        <label>⚡ Speech Speed</label>
-                        <input type="range" id="speed" min="0.5" max="2" step="0.1" value="1">
-                        <span id="speedValue">1.0x</span>
-                    </div>
-
-                    <!-- Video Format -->
-                    <div class="control-item">
-                        <label>📱 Video Format</label>
-                        <select id="format">
-                            <option value="9:16">9:16 (Reels/Shorts)</option>
-                            <option value="16:9">16:9 (YouTube)</option>
-                            <option value="1:1">1:1 (Instagram)</option>
-                        </select>
-                    </div>
-
-                    <!-- Background Music -->
-                    <div class="control-item">
-                        <label>🎵 Background Music</label>
-                        <select id="music">
-                            <option value="none">No Music</option>
-                            <option value="upbeat">Upbeat</option>
-                            <option value="calm">Calm</option>
-                        </select>
-                    </div>
-
-                    <!-- Subtitle Style -->
-                    <div class="control-item">
-                        <label>📝 Subtitle Style</label>
-                        <select id="subtitleStyle">
-                            <option value="white">White with Shadow</option>
-                            <option value="yellow">Yellow Bold</option>
-                        </select>
-                    </div>
-
-                    <!-- Volume Control -->
-                    <div class="control-item">
-                        <label>🔊 Music Volume</label>
-                        <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5">
-                    </div>
+                <div class="hours">
+                    <i class="fas fa-truck-fast"></i>   Home delivery available within Sikar | Bulk order discounts
                 </div>
-
-                <!-- Generate Button -->
-                <button id="generateBtn" class="generate-btn">
-                    <span>Generate Video</span>
-                    <div class="loader" style="display: none;"></div>
-                </button>
-
-                <!-- Progress Bar -->
-                <div class="progress-container" style="display: none;">
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 0%;"></div>
-                    </div>
-                    <p class="progress-text">Processing: <span id="progressStatus">Starting...</span></p>
-                </div>
-
-                <!-- Video Preview Section -->
-                <div class="video-section" style="display: none;">
-                    <h3>Your Generated Video</h3>
-                    <video id="videoPreview" controls>
-                        <source src="" type="video/mp4">
-                    </video>
-                    <a id="downloadBtn" class="download-btn" download>⬇️ Download Video</a>
+                <div style="margin-top: 24px;">
+                    <a href="https://maps.google.com/?q=Salasar+Stand+Mohalla+Jamidaran+Sikar" target="_blank" class="btn-primary" style="background:#2e241f;"><i class="fab fa-google-maps"></i> Open in Google Maps</a>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Bottom Ad Space - Google AdSense -->
-    <div class="ad-container bottom-ad">
-        <div class="ad-label">Advertisement</div>
-        <div class="ad-placeholder">728x90 Ad Space</div>
+<!-- footer -->
+<footer>
+    <div class="container">
+        <p>© 2026 Shiv Boot House — Sikar's premier destination for quality footwear since 1995.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;"><i class="fas fa-heart" style="color:#e09343;"></i> Walk with confidence, comfort & style.</p>
+        <p>📍 near Salasar Stand, Mohalla Jamidaran, Sikar | 📞 094620 18853</p>
     </div>
+</footer>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
+<!-- simple smooth scroll behavior -->
+<script>
+    document.querySelectorAll('.nav-links a, .btn-primary[href^="#"], .btn-outline[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href && href.startsWith('#')) {
+                const target = document.querySelector(href);
+                if(target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>
