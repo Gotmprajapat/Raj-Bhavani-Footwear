@@ -1,355 +1,1267 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" class="h-full bg-slate-950 text-slate-100 dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Raj Bhawani Footwears</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAGA 360° AI Sneaker Customizer Studio</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Three.js & OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  
+  <!-- Tone.js for Sound FX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
-        body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
-            background: #ffffff;
-            color: #1a1a1a;
-            scroll-behavior: smooth;
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-        /* Hero Section - Chota naam */
-        .hero {
-            min-height: 35vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              emerald: '#10b981',
+              gold: '#fbbf24',
+              accent: '#059669',
+              dark: '#0a0f1d'
+            }
+          }
         }
+      }
+    }
+  </script>
 
-        .hero-content {
-            padding: 1.5rem;
-        }
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow: hidden;
+    }
 
-        .hero h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
 
-        .hero h1 span {
-            color: #e67e22;
-        }
+    .glass-btn {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+    .glass-btn.active {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: rgba(16, 185, 129, 0.7);
+      color: #34d399;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+    }
 
-        .hero p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.5rem;
-        }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 9999px;
+    }
 
-        /* Slideshow */
-        .gallery-section {
-            padding: 2rem 1rem;
-            background: #ffffff;
-        }
+    @keyframes swipeHint {
+      0%, 100% { transform: translateX(-18px); }
+      50% { transform: translateX(18px); }
+    }
+    .swipe-animation {
+      animation: swipeHint 2.4s infinite ease-in-out;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .slideshow-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            aspect-ratio: 16 / 9;
-        }
-
-        .slides {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 100%;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Dynamic Grid */
-        .dynamic-photos {
-            padding: 2rem 1rem;
-            background: #f5f5f5;
-        }
-
-        .dynamic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .photo-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.4s ease;
-        }
-
-        .photo-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .photo-card.hide-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .photo-card p {
-            padding: 10px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #444;
-        }
-
-        /* Info Section */
-        .info-section {
-            padding: 2rem 1rem;
-            background: #ffffff;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .info-card {
-            background: #f8f9fa;
-            border-radius: 20px;
-            padding: 1.2rem;
-            border: 1px solid #eee;
-        }
-
-        .info-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: #e67e22;
-        }
-
-        .info-card p, .info-card a {
-            font-size: 0.9rem;
-            margin: 0.5rem 0;
-            color: #444;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .map-container {
-            margin-top: 1.5rem;
-            border-radius: 20px;
-            overflow: hidden;
-            height: 280px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #f1f3f5;
-            font-size: 0.75rem;
-            color: #888;
-        }
-
-        .nav-btn {
-            background: #e67e22;
-            color: white;
-            border: none;
-            padding: 6px 18px;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            margin: 0 4px;
-        }
-
-        .nav-buttons {
-            text-align: center;
-            margin-top: 0.8rem;
-        }
-    </style>
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(16, 185, 129, 0.5);
+    }
+  </style>
 </head>
-<body>
+<body class="h-full w-full flex flex-col bg-slate-950 text-slate-100">
 
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Raj Bhawani <span>Footwears</span></h1>
-            <p>👟 Adidas | Puma | Nike | Bata</p>
-        </div>
+  <header class="h-16 border-b border-slate-800/80 px-4 md:px-8 flex items-center justify-between z-20 glass-panel">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-emerald-400 to-amber-400 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-emerald-500/20 font-display">
+        P
+      </div>
+      <div>
+        <h1 class="font-bold text-base md:text-lg tracking-tight flex items-center gap-2">
+          PAGA Star-Zip <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-medium border border-emerald-500/30">360° AI Studio</span>
+        </h1>
+        <p class="text-xs text-slate-400 hidden md:block">Rotate 360° • Custom materials • AI Stylist & Poster Generation</p>
+      </div>
     </div>
 
-    <div class="gallery-section">
-        <div class="section-title">📸 Showroom</div>
-        <div class="slideshow-container">
-            <div class="slides" id="slides">
-                <div class="slide"><img id="img1" alt="Shoe 1"></div>
-                <div class="slide"><img id="img2" alt="Shoe 2"></div>
-                <div class="slide"><img id="img3" alt="Shoe 3"></div>
-                <div class="slide"><img id="img4" alt="Shoe 4"></div>
-            </div>
+    <!-- Header Actions -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Lang Toggle -->
+      <button onclick="toggleLanguage()" class="glass-btn px-2.5 py-1 rounded-xl text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1">
+        <i class="fa-solid fa-language text-emerald-400"></i>
+        <span id="lang-label">EN / HI</span>
+      </button>
+
+      <!-- Snapshot Capture Button -->
+      <button onclick="captureSnapshot()" class="glass-btn px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-slate-200">
+        <i class="fa-solid fa-camera text-emerald-400"></i>
+        <span class="hidden sm:inline" id="btn-snapshot-text">Snapshot</span>
+      </button>
+
+      <!-- AI Stylist Prompt Trigger -->
+      <button onclick="openAIStylistModal()" class="glass-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 text-amber-300 border-amber-500/40 bg-amber-500/10">
+        <i class="fa-solid fa-wand-magic-sparkles text-amber-400 animate-pulse"></i>
+        <span class="hidden sm:inline">AI Stylist</span>
+      </button>
+
+      <!-- View Order / Cart -->
+      <button onclick="openCartModal()" class="glass-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-emerald-500/20 border-emerald-500/50 text-emerald-300">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-price-badge">₹12,499</span>
+      </button>
+
+      <!-- Fullscreen Toggle -->
+      <button onclick="toggleFullscreen()" class="glass-btn w-9 h-9 rounded-xl flex items-center justify-center text-slate-300 hover:text-white" title="Fullscreen">
+        <i class="fa-solid fa-expand"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 relative overflow-hidden flex flex-col md:flex-row">
+    
+    <!-- Left 3D Viewport Area -->
+    <div id="viewport-container" class="relative flex-1 h-full w-full cursor-grab active:cursor-grabbing select-none overflow-hidden">
+      
+      <!-- Three.js Canvas -->
+      <canvas id="canvas-3d" class="absolute inset-0 w-full h-full block z-0"></canvas>
+
+      <!-- Drag Prompt Banner (Fades out when rotated) -->
+      <div id="drag-hint" class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center bg-slate-950/40 transition-opacity duration-700 z-10">
+        <div class="glass-panel px-6 py-4 rounded-2xl flex flex-col items-center gap-3 border border-emerald-500/30 text-center shadow-2xl backdrop-blur-md">
+          <div class="flex items-center gap-4 text-emerald-400 text-3xl swipe-animation">
+            <i class="fa-solid fa-hand-pointer"></i>
+            <i class="fa-solid fa-arrows-left-right"></i>
+          </div>
+          <div>
+            <p class="font-bold text-white text-base md:text-lg" id="drag-hint-title">360° घुमाने के लिए ड्रैग करें</p>
+            <p class="text-xs text-slate-300" id="drag-hint-sub">Drag or swipe to spin in full 360° view</p>
+          </div>
         </div>
-        <div class="nav-buttons">
-            <button class="nav-btn" id="prevSlide">◀ Prev</button>
-            <button class="nav-btn" id="nextSlide">Next ▶</button>
+      </div>
+
+      <!-- Active Part Indicator -->
+      <div id="selected-part-badge" class="absolute top-4 left-4 z-10 glass-panel px-3.5 py-2 rounded-xl text-xs flex items-center gap-2 border border-emerald-500/40 text-emerald-300 shadow-xl">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span><span id="label-selected-part">Part Selected</span>: <strong id="selected-part-name" class="text-white">Upper Leather Body</strong></span>
+      </div>
+
+      <!-- Rotation Angle Badge -->
+      <div class="absolute top-4 right-4 z-10 glass-panel px-3 py-1.5 rounded-xl text-xs font-mono flex items-center gap-2 text-slate-300">
+        <i class="fa-solid fa-compass text-emerald-400"></i>
+        <span id="angle-status-badge">0° Angle</span>
+      </div>
+
+      <!-- Bottom Toolbar Controls Bar -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 glass-panel px-4 py-2.5 rounded-2xl flex items-center gap-3 sm:gap-4 shadow-2xl border border-slate-700/60 max-w-[95vw] overflow-x-auto">
+        <!-- Auto Rotate Toggle -->
+        <button id="btn-auto-rotate" onclick="toggleAutoRotate()" class="glass-btn px-3 py-2 rounded-xl text-xs font-medium flex items-center gap-2 text-emerald-400">
+          <i id="icon-auto-rotate" class="fa-solid fa-play"></i>
+          <span class="whitespace-nowrap" id="label-auto-rotate">Auto 360°</span>
+        </button>
+
+        <div class="h-6 w-[1px] bg-slate-800"></div>
+
+        <!-- Zoom Controls -->
+        <div class="flex items-center gap-1.5">
+          <button onclick="adjustZoom(-0.3)" class="glass-btn w-8 h-8 rounded-lg flex items-center justify-center text-xs text-slate-300">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <span class="text-xs text-slate-400 font-mono w-10 text-center" id="zoom-label">100%</span>
+          <button onclick="adjustZoom(0.3)" class="glass-btn w-8 h-8 rounded-lg flex items-center justify-center text-xs text-slate-300">
+            <i class="fa-solid fa-plus"></i>
+          </button>
         </div>
+
+        <div class="h-6 w-[1px] bg-slate-800"></div>
+
+        <!-- Angle Slider Scrubber -->
+        <div class="flex items-center gap-2 min-w-[120px] sm:min-w-[160px]">
+          <input type="range" id="angle-range" min="0" max="360" value="0" step="1" oninput="onAngleSliderInput(this.value)" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+        </div>
+
+        <div class="h-6 w-[1px] bg-slate-800"></div>
+
+        <!-- Camera Angle Preset Buttons -->
+        <div class="flex items-center gap-1">
+          <button onclick="setCameraAngle('front')" class="glass-btn px-2.5 py-1 rounded-lg text-[11px] text-slate-300">Front</button>
+          <button onclick="setCameraAngle('side')" class="glass-btn px-2.5 py-1 rounded-lg text-[11px] text-slate-300">Side</button>
+          <button onclick="setCameraAngle('heel')" class="glass-btn px-2.5 py-1 rounded-lg text-[11px] text-slate-300">Heel</button>
+          <button onclick="setCameraAngle('sole')" class="glass-btn px-2.5 py-1 rounded-lg text-[11px] text-slate-300">Sole</button>
+        </div>
+      </div>
+
     </div>
 
-    <div class="dynamic-photos">
-        <div class="section-title">👟 Collections</div>
-        <div class="dynamic-grid" id="dynamicGrid"></div>
-    </div>
-
-    <div class="info-section">
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>📍 Address</h3>
-                <p>🏬 Poddar Tower, Ratangarh Road, Salasar, Rajasthan - 331506</p>
-                <p>⏰ 9AM – 8PM</p>
-            </div>
-            <div class="info-card">
-                <h3>📞 Contact</h3>
-                <p>📱 <a href="tel:+919057574626">090575 74626</a></p>
-                <p>💬 <a href="https://wa.me/919057574626">WhatsApp</a></p>
-            </div>
-            <div class="info-card">
-                <h3>⭐ Services</h3>
-                <p>✅ Home Delivery</p>
-                <p>✅ Genuine Quality</p>
-            </div>
-        </div>
-        <div class="map-container">
-            <iframe src="https://maps.google.com/maps?q=27.9685,74.4885&z=16&output=embed"></iframe>
-        </div>
-    </div>
-
-    <footer>© 2025 Raj Bhawani Footwears | Salasar</footer>
-
-    <script>
-        // Aapki ACTUAL shoe photos - direct Unsplash shoe images
-        // Ye real shoe photos hain (Nike, Adidas, Puma, Running shoes)
-        const shoePhotos = [
-            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",  // Nike Red Shoe
-            "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800",  // Adidas White
-            "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800",  // Nike Air Max
-            "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800"   // Puma
-        ];
-
-        // Set slideshow images
-        document.getElementById('img1').src = shoePhotos[0];
-        document.getElementById('img2').src = shoePhotos[1];
-        document.getElementById('img3').src = shoePhotos[2];
-        document.getElementById('img4').src = shoePhotos[3];
-
-        // Slideshow logic
-        let slideIndex = 0;
-        const slides = document.getElementById('slides');
-        const totalSlides = 4;
+    <!-- Right Customization Sidebar -->
+    <aside class="w-full md:w-80 lg:w-96 border-t md:border-t-0 md:border-l border-slate-800/80 glass-panel flex flex-col z-20 max-h-[50vh] md:max-h-full overflow-y-auto custom-scrollbar">
+      <div class="p-4 md:p-6 space-y-6">
         
-        function showSlide() {
-            slideIndex = (slideIndex + 1) % totalSlides;
-            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        <!-- Header & Sneaker Model Title -->
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Interactive 3D Studio</span>
+          <h2 class="text-xl font-extrabold text-white mt-1 font-display">PAGA Star-Zip Trainer</h2>
+          <p class="text-xs text-slate-400 mt-1" id="label-sidebar-intro">Click any part in 3D or choose below to edit colors & materials.</p>
+        </div>
+
+        <!-- SELECT SHOE PART LIST -->
+        <div class="space-y-3">
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-300 block flex items-center justify-between">
+            <span id="label-choose-part">1. Select Shoe Component</span>
+            <span class="text-[10px] text-emerald-400 font-normal">(10 Parts)</span>
+          </label>
+
+          <div class="grid grid-cols-2 gap-2" id="part-selector-buttons">
+            <!-- Buttons dynamically generated in JS -->
+          </div>
+        </div>
+
+        <!-- COLOR & MATERIAL PICKER SECTION -->
+        <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4 shadow-inner">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-palette text-emerald-400"></i>
+              <span id="active-part-title">Upper Leather Color</span>
+            </span>
+
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-400 font-mono" id="hex-display">#F8FAFC</span>
+              <input type="color" id="custom-color-picker" oninput="onCustomColorInput(this.value)" class="w-8 h-8 rounded-full cursor-pointer bg-transparent border-0">
+            </div>
+          </div>
+
+          <!-- Color Swatches Grid -->
+          <div class="space-y-1.5">
+            <span class="text-[11px] text-slate-400" id="label-curated-presets">Curated Presets:</span>
+            <div class="grid grid-cols-7 gap-1.5" id="color-swatch-grid">
+              <!-- Swatches generated in JS -->
+            </div>
+          </div>
+
+          <!-- Material Finish Selector -->
+          <div class="space-y-1.5 pt-2 border-t border-slate-800">
+            <span class="text-[11px] text-slate-400" id="label-material-finish">Material Finish:</span>
+            <div class="grid grid-cols-4 gap-1.5">
+              <button onclick="setMaterialFinish('leather')" id="finish-leather" class="glass-btn py-1.5 text-[11px] rounded-lg font-medium text-center">Leather</button>
+              <button onclick="setMaterialFinish('metallic')" id="finish-metallic" class="glass-btn py-1.5 text-[11px] rounded-lg font-medium text-center">Metallic</button>
+              <button onclick="setMaterialFinish('gloss')" id="finish-gloss" class="glass-btn py-1.5 text-[11px] rounded-lg font-medium text-center">Gloss</button>
+              <button onclick="setMaterialFinish('matte')" id="finish-matte" class="glass-btn py-1.5 text-[11px] rounded-lg font-medium text-center">Matte</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK THEMES PALETTES -->
+        <div class="space-y-3">
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-400 block" id="label-quick-themes">Instant Presets</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="applyFullTheme('emerald')" class="glass-btn p-2 rounded-xl text-left flex items-center gap-2">
+              <div class="w-4 h-4 rounded-full bg-emerald-500 border border-slate-600"></div>
+              <span class="text-xs font-medium text-slate-200">Emerald Zip</span>
+            </button>
+            <button onclick="applyFullTheme('stealth')" class="glass-btn p-2 rounded-xl text-left flex items-center gap-2">
+              <div class="w-4 h-4 rounded-full bg-zinc-900 border border-slate-600"></div>
+              <span class="text-xs font-medium text-slate-200">Stealth Gold</span>
+            </button>
+            <button onclick="applyFullTheme('retro')" class="glass-btn p-2 rounded-xl text-left flex items-center gap-2">
+              <div class="w-4 h-4 rounded-full bg-red-600 border border-slate-600"></div>
+              <span class="text-xs font-medium text-slate-200">Retro Red</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STUDIO LIGHTING PRESETS -->
+        <div class="space-y-3">
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-400 block" id="label-studio-env">Lighting Environment</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="setLightingPreset('studio')" class="glass-btn px-3 py-2 rounded-xl text-xs text-center font-medium text-slate-200">
+              <i class="fa-solid fa-sun text-amber-400 mb-1 block"></i> Studio Light
+            </button>
+            <button onclick="setLightingPreset('cyber')" class="glass-btn px-3 py-2 rounded-xl text-xs text-center font-medium text-slate-200">
+              <i class="fa-solid fa-bolt text-purple-400 mb-1 block"></i> Cyber Neon
+            </button>
+            <button onclick="setLightingPreset('dramatic')" class="glass-btn px-3 py-2 rounded-xl text-xs text-center font-medium text-slate-200">
+              <i class="fa-solid fa-moon text-blue-400 mb-1 block"></i> Dark Spotlight
+            </button>
+          </div>
+        </div>
+
+        <!-- AI Studio Poster Generation Button -->
+        <div class="pt-2">
+          <button onclick="generateAIPoster()" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-amber-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 hover:scale-[1.02] transition-transform">
+            <i class="fa-solid fa-image"></i>
+            <span id="label-gen-poster">Generate AI Studio Concept Poster</span>
+          </button>
+        </div>
+
+      </div>
+    </aside>
+  </main>
+
+  <!-- MODAL: AI Stylist Prompt -->
+  <div id="ai-stylist-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 border border-emerald-500/30 space-y-5 shadow-2xl relative">
+      <button onclick="closeAIStylistModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full glass-btn flex items-center justify-center text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xl">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-white">AI Sneaker Color Stylist</h3>
+          <p class="text-xs text-slate-400">Describe any theme or mood to auto-generate custom color scheme</p>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-xs font-semibold text-slate-300">Enter Theme / Idea Prompt:</label>
+        <div class="relative">
+          <input type="text" id="ai-stylist-input" placeholder="e.g. Cyberpunk Tokyo 2077, Sunburst Summer, Minimalist Gold & Slate..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-emerald-500">
+        </div>
+      </div>
+
+      <!-- Quick Suggestion Tags -->
+      <div class="space-y-1.5">
+        <span class="text-[11px] text-slate-400">Quick Ideas:</span>
+        <div class="flex flex-wrap gap-1.5">
+          <button onclick="setAIPromptTag('Cyberpunk Neon Pink and Cyan')" class="glass-btn px-2.5 py-1 rounded-lg text-xs text-slate-300">Cyberpunk Neon</button>
+          <button onclick="setAIPromptTag('Royal Gold and Deep Velvet Emerald')" class="glass-btn px-2.5 py-1 rounded-lg text-xs text-slate-300">Royal Gold & Emerald</button>
+          <button onclick="setAIPromptTag('Futuristic Stealth Black with Crimson Accent')" class="glass-btn px-2.5 py-1 rounded-lg text-xs text-slate-300">Stealth Crimson</button>
+          <button onclick="setAIPromptTag('Tokyo Drift Violet and Bright Yellow')" class="glass-btn px-2.5 py-1 rounded-lg text-xs text-slate-300">Tokyo Violet</button>
+        </div>
+      </div>
+
+      <!-- Loading Spinner / Output Message -->
+      <div id="ai-stylist-status" class="hidden text-xs text-amber-400 flex items-center gap-2">
+        <i class="fa-solid fa-circle-notch fa-spin"></i>
+        <span>Gemini AI is crafting your custom color palette...</span>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button onclick="closeAIStylistModal()" class="glass-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-300">Cancel</button>
+        <button onclick="runAIStepStylist()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-amber-400 text-slate-950 font-bold text-xs shadow-lg hover:scale-105 transition-transform">
+          Generate Palette
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: AI Concept Poster Display -->
+  <div id="ai-poster-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 border border-emerald-500/30 space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeAIPosterModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full glass-btn flex items-center justify-center text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl">
+          <i class="fa-solid fa-image"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-white">PAGA Studio Concept Render</h3>
+          <p class="text-xs text-slate-400">AI Generated Marketing Poster for your custom sneaker</p>
+        </div>
+      </div>
+
+      <div id="poster-container" class="min-h-[350px] bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+        <!-- Poster Image Output inserted here -->
+        <div id="poster-spinner" class="flex flex-col items-center gap-3 text-emerald-400">
+          <i class="fa-solid fa-spinner fa-spin text-3xl"></i>
+          <span class="text-xs font-semibold text-slate-300">Rendering high-res lifestyle poster with Gemini 3.1 Flash Image...</span>
+        </div>
+        <img id="poster-img-output" class="hidden max-w-full max-h-[60vh] object-contain rounded-xl shadow-2xl border border-slate-700" alt="Generated Sneaker Poster">
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <span class="text-xs text-slate-400">Powered by Gemini 3.1 Flash Image</span>
+        <div class="flex items-center gap-3">
+          <a id="poster-download-link" href="#" download="PAGA-Sneaker-Poster.png" class="hidden glass-btn px-4 py-2 rounded-xl text-xs font-bold text-emerald-400 flex items-center gap-2">
+            <i class="fa-solid fa-download"></i> Download Poster
+          </a>
+          <button onclick="closeAIPosterModal()" class="glass-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-300">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Cart & Order Summary -->
+  <div id="cart-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-emerald-500/30 space-y-5 shadow-2xl relative">
+      <button onclick="closeCartModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full glass-btn flex items-center justify-center text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-white">Custom Sneaker Order</h3>
+          <p class="text-xs text-slate-400">Hand-crafted custom edition tailored to your build</p>
+        </div>
+      </div>
+
+      <!-- Size Selector -->
+      <div class="space-y-2">
+        <label class="text-xs font-semibold text-slate-300 block">Select Shoe Size (UK/IN):</label>
+        <div class="grid grid-cols-6 gap-2" id="size-selector-grid">
+          <!-- Sizes generated in JS -->
+        </div>
+      </div>
+
+      <!-- Part Breakdown Summary -->
+      <div class="p-3 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-2 text-xs">
+        <div class="flex items-center justify-between font-bold text-slate-200 border-b border-slate-800 pb-2">
+          <span>Base Custom Model</span>
+          <span>₹11,999</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-400">
+          <span>Premium Finish Surcharge</span>
+          <span id="cart-finish-surcharge">+₹500</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-400">
+          <span>Star Zipper & Gold Charm</span>
+          <span class="text-emerald-400">Included</span>
+        </div>
+        <div class="flex items-center justify-between font-extrabold text-base text-white pt-2 border-t border-slate-800">
+          <span>Total Price</span>
+          <span class="text-emerald-400" id="cart-modal-total">₹12,499</span>
+        </div>
+      </div>
+
+      <button onclick="checkoutSimulate()" class="w-full py-3.5 rounded-2xl bg-emerald-500 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/20 hover:scale-[1.02] transition-transform">
+        Proceed to Order (Pre-Order)
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // System & 3D Variables
+    let scene, camera, renderer, controls;
+    let shoeGroup;
+    let raycaster, mouse;
+    let ambientLight, mainLight, rimLight;
+    let synth = null;
+
+    let isAutoRotating = false;
+    let currentAngle = 0;
+    let isDragging = false;
+    let activePartKey = 'upper';
+    let currentLang = 'hi';
+    let selectedSize = '8';
+
+    // Curated Swatches
+    const swatchColors = [
+      '#F8FAFC', '#94A3B8', '#334155', '#0F172A',
+      '#10B981', '#059669', '#047857',
+      '#FBBF24', '#D97706', '#B45309',
+      '#EF4444', '#DC2626', '#991B1B',
+      '#3B82F6', '#1D4ED8', '#1E40AF',
+      '#8B5CF6', '#6D28D9', '#EC4899'
+    ];
+
+    let shoeMaterials = {};
+
+    // Parts Definition
+    const shoePartsDef = {
+      upper: { name: 'Upper Leather Body', nameHi: 'अपर लेदर बॉडी', color: '#F8FAFC', roughness: 0.35, metalness: 0.05 },
+      toecap: { name: 'Toe Mudguard Arc', nameHi: 'आगे का टो कैप', color: '#94A3B8', roughness: 0.4, metalness: 0.05 },
+      mesh: { name: 'Vamp Mesh Fabric', nameHi: 'सामने का मेश फैब्रिक', color: '#F1F5F9', roughness: 0.8, metalness: 0.0 },
+      side: { name: 'Side Accent Panel', nameHi: 'साइड एक्सेंट पैनल', color: '#CBD5E1', roughness: 0.4, metalness: 0.1 },
+      star: { name: 'Gold Star Charm', nameHi: 'गोल्ड स्टार चार्म', color: '#D97706', roughness: 0.15, metalness: 0.9 },
+      zipper: { name: 'Center Zip Track', nameHi: 'सेंटर ज़िपर ट्रैक', color: '#334155', roughness: 0.5, metalness: 0.7 },
+      heel: { name: 'PAGA Heel Badge', nameHi: 'पीछे का हील बैज', color: '#10B981', roughness: 0.3, metalness: 0.1 },
+      midsole: { name: 'Cushion Midsole', nameHi: 'कुशन मिडसोल', color: '#FFFFFF', roughness: 0.6, metalness: 0.0 },
+      outsole: { name: 'Outsole Grip Pods', nameHi: 'नीचे की ग्रिप आउटसोल', color: '#10B981', roughness: 0.5, metalness: 0.1 },
+      collar: { name: 'Ankle Padding & Lining', nameHi: 'एंकल कॉलर पैडिंग', color: '#0F172A', roughness: 0.6, metalness: 0.0 }
+    };
+
+    // Tone Audio Handler
+    function playToneSound(note) {
+      try {
+        if (window.Tone && Tone.Synth) {
+          if (!synth) {
+            synth = new Tone.Synth({
+              oscillator: { type: 'sine' },
+              envelope: { attack: 0.005, decay: 0.1, sustain: 0.0, release: 0.1 }
+            }).toDestination();
+            synth.volume.value = -18;
+          }
+          if (Tone.context.state !== 'running') {
+            Tone.start();
+          }
+          synth.triggerAttackRelease(note || 'C5', '16n');
         }
-        
-        let autoSlide = setInterval(showSlide, 2500);
-        
-        document.getElementById('nextSlide').onclick = () => {
-            clearInterval(autoSlide);
-            slideIndex = (slideIndex + 1) % totalSlides;
-            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
-            autoSlide = setInterval(showSlide, 2500);
+      } catch (e) {}
+    }
+
+    // Canvas Procedural Bump Textures
+    function createMeshFabricTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 128; canvas.height = 128;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 128, 128);
+      ctx.fillStyle = '#cccccc';
+      for (let x = 0; x < 128; x += 8) {
+        for (let y = 0; y < 128; y += 8) {
+          ctx.beginPath();
+          ctx.arc(x + 4, y + 4, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(4, 4);
+      return texture;
+    }
+
+    function createPagaHeelTexture(bgColorHex = '#10b981', fgColorHex = '#fbbf24') {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512; canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = bgColorHex;
+      ctx.fillRect(0, 0, 512, 120);
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(0, 120, 512, 136);
+
+      ctx.fillStyle = fgColorHex;
+      ctx.font = '900 70px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('PAGA', 256, 160);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.needsUpdate = true;
+      return texture;
+    }
+
+    function buildPagaSneakerMesh() {
+      shoeGroup = new THREE.Group();
+      const meshBumpTex = createMeshFabricTexture();
+
+      Object.keys(shoePartsDef).forEach(key => {
+        const def = shoePartsDef[key];
+        const mat = new THREE.MeshStandardMaterial({
+          color: new THREE.Color(def.color),
+          roughness: def.roughness,
+          metalness: def.metalness
+        });
+
+        if (key === 'mesh') {
+          mat.bumpMap = meshBumpTex;
+          mat.bumpScale = 0.04;
+        }
+        shoeMaterials[key] = mat;
+      });
+
+      const heelTexture = createPagaHeelTexture(shoePartsDef.heel.color, shoePartsDef.star.color);
+      shoeMaterials['heel'].map = heelTexture;
+      shoeMaterials['heel'].needsUpdate = true;
+
+      // 1. OUTSOLE & MIDSOLE
+      const soleShape = new THREE.Shape();
+      soleShape.moveTo(-0.55, -1.5);
+      soleShape.quadraticCurveTo(-0.65, -0.6, -0.62, 0.4);
+      soleShape.quadraticCurveTo(-0.58, 1.2, -0.3, 1.55);
+      soleShape.quadraticCurveTo(0, 1.7, 0.3, 1.55);
+      soleShape.quadraticCurveTo(0.58, 1.2, 0.62, 0.4);
+      soleShape.quadraticCurveTo(0.5, -0.6, 0.55, -1.5);
+      soleShape.quadraticCurveTo(0, -1.7, -0.55, -1.5);
+
+      const soleGeo = new THREE.ExtrudeGeometry(soleShape, {
+        steps: 1, depth: 0.38, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.04, bevelSegments: 5
+      });
+      soleGeo.rotateX(Math.PI / 2);
+      
+      const midsoleMesh = new THREE.Mesh(soleGeo, shoeMaterials.midsole);
+      midsoleMesh.position.set(0, -0.6, 0);
+      midsoleMesh.partKey = 'midsole';
+      shoeGroup.add(midsoleMesh);
+
+      // Tread Pods
+      const treadPodShape = new THREE.Shape();
+      treadPodShape.moveTo(-0.52, 0.2); treadPodShape.lineTo(0.52, 0.2);
+      treadPodShape.lineTo(0.5, 0.8); treadPodShape.lineTo(-0.5, 0.8);
+      const treadGeo = new THREE.ExtrudeGeometry(treadPodShape, { depth: 0.1, bevelEnabled: false });
+      treadGeo.rotateX(Math.PI / 2);
+      const treadMesh = new THREE.Mesh(treadGeo, shoeMaterials.outsole);
+      treadMesh.position.set(0, -0.62, 0);
+      treadMesh.partKey = 'outsole';
+      shoeGroup.add(treadMesh);
+
+      // 2. UPPER LEATHER BODY
+      const upperShape = new THREE.Shape();
+      upperShape.moveTo(-0.5, -1.4);
+      upperShape.quadraticCurveTo(-0.58, 0, -0.26, 1.4);
+      upperShape.quadraticCurveTo(0, 1.55, 0.26, 1.4);
+      upperShape.quadraticCurveTo(0.58, 0, 0.5, -1.4);
+      upperShape.quadraticCurveTo(0, -1.58, -0.5, -1.4);
+
+      const upperGeo = new THREE.ExtrudeGeometry(upperShape, {
+        steps: 4, depth: 0.85, bevelEnabled: true, bevelThickness: 0.12, bevelSize: 0.08, bevelSegments: 6
+      });
+      upperGeo.rotateX(Math.PI / 2);
+
+      const upperMesh = new THREE.Mesh(upperGeo, shoeMaterials.upper);
+      upperMesh.position.set(0, -0.15, 0);
+      upperMesh.partKey = 'upper';
+      shoeGroup.add(upperMesh);
+
+      // 3. FRONT TOE MUDGUARD ARC
+      const toeArcShape = new THREE.Shape();
+      toeArcShape.moveTo(-0.48, 0.7);
+      toeArcShape.quadraticCurveTo(0, 1.58, 0.48, 0.7);
+      toeArcShape.quadraticCurveTo(0.38, 1.4, 0, 1.48);
+      toeArcShape.quadraticCurveTo(-0.38, 1.4, -0.48, 0.7);
+
+      const toeArcGeo = new THREE.ExtrudeGeometry(toeArcShape, { depth: 0.32, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.02 });
+      toeArcGeo.rotateX(Math.PI / 2);
+      const toeArcMesh = new THREE.Mesh(toeArcGeo, shoeMaterials.toecap);
+      toeArcMesh.position.set(0, -0.3, 0.02);
+      toeArcMesh.partKey = 'toecap';
+      shoeGroup.add(toeArcMesh);
+
+      // 4. MESH VAMP
+      const meshVampShape = new THREE.Shape();
+      meshVampShape.moveTo(-0.32, 0.3);
+      meshVampShape.quadraticCurveTo(0, 1.25, 0.32, 0.3);
+      meshVampShape.quadraticCurveTo(0, 0.1, -0.32, 0.3);
+
+      const meshVampGeo = new THREE.ExtrudeGeometry(meshVampShape, { depth: 0.28, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02 });
+      meshVampGeo.rotateX(Math.PI / 2);
+      const meshVampMesh = new THREE.Mesh(meshVampGeo, shoeMaterials.mesh);
+      meshVampMesh.position.set(0, -0.22, 0.05);
+      meshVampMesh.partKey = 'mesh';
+      shoeGroup.add(meshVampMesh);
+
+      // 5. SIDE ACCENTS
+      const sideShape = new THREE.Shape();
+      sideShape.moveTo(-0.52, -0.8); sideShape.lineTo(-0.52, 0.5);
+      sideShape.lineTo(-0.46, 0.6); sideShape.lineTo(-0.46, -0.8);
+
+      const sideGeo = new THREE.ExtrudeGeometry(sideShape, { depth: 0.45, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.01 });
+      sideGeo.rotateX(Math.PI / 2);
+      const sideMeshL = new THREE.Mesh(sideGeo, shoeMaterials.side);
+      sideMeshL.position.set(-0.04, -0.12, 0); sideMeshL.partKey = 'side';
+      shoeGroup.add(sideMeshL);
+
+      const sideMeshR = new THREE.Mesh(sideGeo, shoeMaterials.side);
+      sideMeshR.rotation.y = Math.PI; sideMeshR.position.set(0.04, -0.12, 0);
+      sideMeshR.partKey = 'side';
+      shoeGroup.add(sideMeshR);
+
+      // 6. ZIPPER & STAR CHARM
+      const zipBarGeo = new THREE.BoxGeometry(0.22, 0.14, 1.25);
+      const zipBarMesh = new THREE.Mesh(zipBarGeo, shoeMaterials.zipper);
+      zipBarMesh.position.set(0, 0.38, 0.45);
+      zipBarMesh.rotation.x = -Math.PI / 8;
+      zipBarMesh.partKey = 'zipper';
+      shoeGroup.add(zipBarMesh);
+
+      const zipPullGeo = new THREE.BoxGeometry(0.12, 0.08, 0.35);
+      const zipPullMesh = new THREE.Mesh(zipPullGeo, shoeMaterials.star);
+      zipPullMesh.position.set(0, 0.46, 0.65);
+      zipPullMesh.partKey = 'star';
+      shoeGroup.add(zipPullMesh);
+
+      const starGeo = new THREE.OctahedronGeometry(0.14, 0);
+      starGeo.scale(1, 1, 0.4);
+      const starMesh = new THREE.Mesh(starGeo, shoeMaterials.star);
+      starMesh.position.set(0, 0.46, 0.92);
+      starMesh.rotation.z = Math.PI / 4;
+      starMesh.partKey = 'star';
+      shoeGroup.add(starMesh);
+
+      // 7. REAR HEEL BADGE
+      const heelBadgeGeo = new THREE.CylinderGeometry(0.5, 0.52, 0.5, 16, 1, false, Math.PI * 0.75, Math.PI * 0.5);
+      const heelBadgeMesh = new THREE.Mesh(heelBadgeGeo, shoeMaterials.heel);
+      heelBadgeMesh.position.set(0, 0.18, -1.05);
+      heelBadgeMesh.partKey = 'heel';
+      shoeGroup.add(heelBadgeMesh);
+
+      // 8. ANKLE COLLAR
+      const collarOuterGeo = new THREE.TorusGeometry(0.38, 0.12, 12, 24);
+      const collarMesh = new THREE.Mesh(collarOuterGeo, shoeMaterials.collar);
+      collarMesh.rotation.x = Math.PI / 2;
+      collarMesh.position.set(0, 0.52, -0.65);
+      collarMesh.partKey = 'collar';
+      shoeGroup.add(collarMesh);
+
+      // Inner Hole
+      const innerHoleGeo = new THREE.CylinderGeometry(0.32, 0.28, 0.6, 16);
+      const innerHoleMat = new THREE.MeshBasicMaterial({ color: 0x050811 });
+      const innerHoleMesh = new THREE.Mesh(innerHoleGeo, innerHoleMat);
+      innerHoleMesh.position.set(0, 0.4, -0.65);
+      shoeGroup.add(innerHoleMesh);
+
+      scene.add(shoeGroup);
+    }
+
+    function buildShoePartsSelectorUI() {
+      const grid = document.getElementById('part-selector-buttons');
+      grid.innerHTML = '';
+
+      Object.keys(shoePartsDef).forEach(key => {
+        const part = shoePartsDef[key];
+        const btn = document.createElement('button');
+        btn.id = `part-btn-${key}`;
+        btn.onclick = () => selectPart(key);
+        btn.className = "glass-btn p-2.5 rounded-xl text-left flex items-center gap-2.5 transition-all text-xs font-medium";
+
+        const pName = currentLang === 'hi' ? part.nameHi : part.name;
+        btn.innerHTML = `
+          <div id="part-indicator-${key}" class="w-4 h-4 rounded-full border border-slate-600 flex-shrink-0 shadow-sm" style="background-color: ${part.color}"></div>
+          <span class="truncate text-slate-200">${pName}</span>
+        `;
+        grid.appendChild(btn);
+      });
+    }
+
+    function buildColorSwatchesUI() {
+      const container = document.getElementById('color-swatch-grid');
+      container.innerHTML = '';
+
+      swatchColors.forEach(hex => {
+        const btn = document.createElement('button');
+        btn.onclick = () => applyColorToActivePart(hex);
+        btn.className = "w-7 h-7 rounded-full border border-slate-700 transition-transform hover:scale-110 shadow-md";
+        btn.style.backgroundColor = hex;
+        container.appendChild(btn);
+      });
+    }
+
+    function selectPart(partKey) {
+      activePartKey = partKey;
+      const def = shoePartsDef[partKey];
+
+      document.querySelectorAll('#part-selector-buttons button').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`part-btn-${partKey}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const pName = currentLang === 'hi' ? def.nameHi : def.name;
+      document.getElementById('selected-part-name').innerText = pName;
+      document.getElementById('active-part-title').innerText = `${pName} Color`;
+
+      const currentColorHex = '#' + shoeMaterials[partKey].color.getHexString().toUpperCase();
+      document.getElementById('hex-display').innerText = currentColorHex;
+      document.getElementById('custom-color-picker').value = currentColorHex;
+
+      playToneSound('F4');
+    }
+
+    function applyColorToActivePart(hex) {
+      if (!shoeMaterials[activePartKey]) return;
+
+      shoeMaterials[activePartKey].color.setHex(parseInt(hex.replace('#', '0x')));
+      shoePartsDef[activePartKey].color = hex;
+
+      const indicator = document.getElementById(`part-indicator-${activePartKey}`);
+      if (indicator) indicator.style.backgroundColor = hex;
+
+      document.getElementById('hex-display').innerText = hex.toUpperCase();
+      document.getElementById('custom-color-picker').value = hex;
+
+      if (activePartKey === 'heel' || activePartKey === 'star') {
+        const updatedTexture = createPagaHeelTexture(
+          shoePartsDef.heel.color,
+          shoePartsDef.star.color
+        );
+        shoeMaterials['heel'].map = updatedTexture;
+        shoeMaterials['heel'].needsUpdate = true;
+      }
+
+      playToneSound('A4');
+    }
+
+    function onCustomColorInput(hex) {
+      applyColorToActivePart(hex);
+    }
+
+    function setMaterialFinish(finishType) {
+      if (!shoeMaterials[activePartKey]) return;
+
+      const mat = shoeMaterials[activePartKey];
+      if (finishType === 'leather') {
+        mat.roughness = 0.35; mat.metalness = 0.05;
+      } else if (finishType === 'metallic') {
+        mat.roughness = 0.15; mat.metalness = 0.9;
+      } else if (finishType === 'gloss') {
+        mat.roughness = 0.05; mat.metalness = 0.2;
+      } else if (finishType === 'matte') {
+        mat.roughness = 0.8; mat.metalness = 0.0;
+      }
+
+      playToneSound('C5');
+    }
+
+    function applyFullTheme(themeName) {
+      playToneSound('E5');
+      if (themeName === 'emerald') {
+        applyColorToPartDirect('upper', '#F8FAFC');
+        applyColorToPartDirect('toecap', '#10B981');
+        applyColorToPartDirect('side', '#CBD5E1');
+        applyColorToPartDirect('star', '#FBBF24');
+        applyColorToPartDirect('zipper', '#334155');
+        applyColorToPartDirect('heel', '#10B981');
+        applyColorToPartDirect('midsole', '#FFFFFF');
+        applyColorToPartDirect('outsole', '#10B981');
+        applyColorToPartDirect('collar', '#0F172A');
+      } else if (themeName === 'stealth') {
+        applyColorToPartDirect('upper', '#1E293B');
+        applyColorToPartDirect('toecap', '#0F172A');
+        applyColorToPartDirect('side', '#475569');
+        applyColorToPartDirect('star', '#FBBF24');
+        applyColorToPartDirect('zipper', '#020617');
+        applyColorToPartDirect('heel', '#FBBF24');
+        applyColorToPartDirect('midsole', '#0F172A');
+        applyColorToPartDirect('outsole', '#FBBF24');
+        applyColorToPartDirect('collar', '#020617');
+      } else if (themeName === 'retro') {
+        applyColorToPartDirect('upper', '#FAFAFA');
+        applyColorToPartDirect('toecap', '#DC2626');
+        applyColorToPartDirect('side', '#94A3B8');
+        applyColorToPartDirect('star', '#D97706');
+        applyColorToPartDirect('zipper', '#1E293B');
+        applyColorToPartDirect('heel', '#DC2626');
+        applyColorToPartDirect('midsole', '#F8FAFC');
+        applyColorToPartDirect('outsole', '#DC2626');
+        applyColorToPartDirect('collar', '#1E293B');
+      }
+    }
+
+    function applyColorToPartDirect(key, hex) {
+      if (shoeMaterials[key]) {
+        shoeMaterials[key].color.setHex(parseInt(hex.replace('#', '0x')));
+        shoePartsDef[key].color = hex;
+        const ind = document.getElementById(`part-indicator-${key}`);
+        if (ind) ind.style.backgroundColor = hex;
+      }
+    }
+
+    function updateViewAngle(angleDeg) {
+      document.getElementById('angle-range').value = angleDeg;
+      document.getElementById('angle-status-badge').innerText = Math.round(angleDeg) + '° Angle';
+      shoeGroup.rotation.y = (angleDeg * Math.PI) / 180;
+    }
+
+    function rotate360ByDelta(deltaX) {
+      currentAngle = (currentAngle + deltaX * 0.55) % 360;
+      if (currentAngle < 0) currentAngle += 360;
+      updateViewAngle(currentAngle);
+    }
+
+    function onAngleSliderInput(val) {
+      currentAngle = parseFloat(val);
+      updateViewAngle(currentAngle);
+    }
+
+    function toggleAutoRotate() {
+      isAutoRotating = !isAutoRotating;
+      playToneSound('E4');
+      const btn = document.getElementById('btn-auto-rotate');
+      const icon = document.getElementById('icon-auto-rotate');
+      if (isAutoRotating) {
+        btn.classList.add('bg-emerald-500/20', 'border-emerald-500/50');
+        icon.className = "fa-solid fa-pause";
+      } else {
+        btn.classList.remove('bg-emerald-500/20', 'border-emerald-500/50');
+        icon.className = "fa-solid fa-play";
+      }
+    }
+
+    function adjustZoom(delta) {
+      playToneSound('B4');
+      const targetZoom = THREE.MathUtils.clamp(camera.position.z - delta, 2.2, 7.5);
+      camera.position.z = targetZoom;
+      document.getElementById('zoom-label').innerText = Math.round((5.5 / targetZoom) * 100) + '%';
+    }
+
+    function setCameraAngle(type) {
+      playToneSound('C5');
+      if (type === 'side') currentAngle = 90;
+      else if (type === 'front') currentAngle = 0;
+      else if (type === 'heel') currentAngle = 180;
+      else if (type === 'sole') currentAngle = 270;
+      updateViewAngle(currentAngle);
+    }
+
+    function setLightingPreset(preset) {
+      playToneSound('D5');
+      if (preset === 'studio') {
+        ambientLight.intensity = 0.75; mainLight.color.setHex(0xffffff);
+        rimLight.color.setHex(0x10b981); scene.background.setHex(0x090d16);
+      } else if (preset === 'cyber') {
+        ambientLight.intensity = 0.35; mainLight.color.setHex(0xc084fc);
+        rimLight.color.setHex(0x22d3ee); scene.background.setHex(0x0a0518);
+      } else if (preset === 'dramatic') {
+        ambientLight.intensity = 0.2; mainLight.color.setHex(0xfbbf24);
+        rimLight.color.setHex(0xf43f5e); scene.background.setHex(0x030712);
+      }
+    }
+
+    async function runAIStepStylist() {
+      const promptInput = document.getElementById('ai-stylist-input').value.trim();
+      if (!promptInput) return;
+
+      const statusEl = document.getElementById('ai-stylist-status');
+      statusEl.classList.remove('hidden');
+
+      try {
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+        const systemPrompt = "You are a world-class sneaker colorway designer. Generate hex color codes for each of the 10 shoe parts matching the user's requested theme. Output JSON object mapping keys 'upper', 'toecap', 'mesh', 'side', 'star', 'zipper', 'heel', 'midsole', 'outsole', 'collar' to valid 6-character hex strings (e.g. #FF0055).";
+
+        const payload = {
+          contents: [{ parts: [{ text: `Theme: ${promptInput}` }] }],
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+          generationConfig: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: "OBJECT",
+              properties: {
+                upper: { type: "STRING" },
+                toecap: { type: "STRING" },
+                mesh: { type: "STRING" },
+                side: { type: "STRING" },
+                star: { type: "STRING" },
+                zipper: { type: "STRING" },
+                heel: { type: "STRING" },
+                midsole: { type: "STRING" },
+                outsole: { type: "STRING" },
+                collar: { type: "STRING" }
+              },
+              required: ["upper", "toecap", "mesh", "side", "star", "zipper", "heel", "midsole", "outsole", "collar"]
+            }
+          }
         };
-        
-        document.getElementById('prevSlide').onclick = () => {
-            clearInterval(autoSlide);
-            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-            slides.style.transform = `translateX(-${slideIndex * 100}%)`;
-            autoSlide = setInterval(showSlide, 2500);
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (jsonText) {
+          const colorsObj = JSON.parse(jsonText);
+          Object.keys(colorsObj).forEach(key => {
+            if (colorsObj[key] && shoeMaterials[key]) {
+              applyColorToPartDirect(key, colorsObj[key]);
+            }
+          });
+          selectPart(activePartKey);
+          playToneSound('G5');
+          closeAIStylistModal();
+        }
+      } catch (e) {
+        console.error('AI Stylist error:', e);
+      } finally {
+        statusEl.classList.add('hidden');
+      }
+    }
+
+    function setAIPromptTag(text) {
+      document.getElementById('ai-stylist-input').value = text;
+    }
+
+    function openAIStylistModal() {
+      document.getElementById('ai-stylist-modal').classList.remove('hidden');
+    }
+    function closeAIStylistModal() {
+      document.getElementById('ai-stylist-modal').classList.add('hidden');
+    }
+
+    async function generateAIPoster() {
+      document.getElementById('ai-poster-modal').classList.remove('hidden');
+      document.getElementById('poster-spinner').classList.remove('hidden');
+      document.getElementById('poster-img-output').classList.add('hidden');
+      document.getElementById('poster-download-link').classList.add('hidden');
+
+      try {
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key=${apiKey}`;
+
+        const promptText = `A professional cinematic advertising poster of a high-top sneaker with zipper track and gold star charm. Main upper color: ${shoePartsDef.upper.color}, Heel color: ${shoePartsDef.heel.color}, Outsole color: ${shoePartsDef.outsole.color}. Studio neon lighting, 8k resolution, photorealistic luxury footwear catalog shot.`;
+
+        const payload = {
+          contents: [{
+            parts: [{ text: promptText }]
+          }],
+          generationConfig: {
+            responseModalities: ['TEXT', 'IMAGE']
+          }
         };
 
-        // Grid mein bhi same shoe photos alag-alag order mein
-        const gridPhotos = [...shoePhotos, ...shoePhotos.slice().reverse()];
-        const gridTitles = ["Nike Running", "Adidas Originals", "Air Max", "Puma Sports", "Casual Wear", "Premium Edition", "Sports Style", "Daily Use"];
-        
-        const grid = document.getElementById('dynamicGrid');
-        for (let i = 0; i < gridPhotos.length; i++) {
-            const card = document.createElement('div');
-            card.className = 'photo-card';
-            card.innerHTML = `
-                <img src="${gridPhotos[i]}" alt="Shoe">
-                <p>👟 ${gridTitles[i]}</p>
-            `;
-            grid.appendChild(card);
-        }
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-        // Scroll animation
-        const cards = document.querySelectorAll('.photo-card');
-        
-        function checkVisibility() {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const cardTop = rect.top + scrollY;
-                const cardBottom = cardTop + rect.height;
-                
-                if (scrollY + windowHeight > cardTop + 60 && scrollY < cardBottom - 60) {
-                    card.classList.add('visible');
-                    card.classList.remove('hide-scroll');
-                } else {
-                    card.classList.remove('visible');
-                    card.classList.add('hide-scroll');
-                }
-            });
-        }
+        const result = await response.json();
+        const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
 
-        window.addEventListener('scroll', checkVisibility);
-        checkVisibility();
-    </script>
+        if (base64Data) {
+          const imgUrl = `data:image/png;base64,${base64Data}`;
+          const imgEl = document.getElementById('poster-img-output');
+          imgEl.src = imgUrl;
+          imgEl.classList.remove('hidden');
+
+          const dlBtn = document.getElementById('poster-download-link');
+          dlBtn.href = imgUrl;
+          dlBtn.classList.remove('hidden');
+        }
+      } catch (err) {
+        console.error('Poster gen error:', err);
+      } finally {
+        document.getElementById('poster-spinner').classList.add('hidden');
+      }
+    }
+
+    function closeAIPosterModal() {
+      document.getElementById('ai-poster-modal').classList.add('hidden');
+    }
+
+    function captureSnapshot() {
+      playToneSound('C6');
+      renderer.render(scene, camera);
+      const dataUrl = renderer.domElement.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = `PAGA-Custom-Sneaker-${Date.now()}.png`;
+      link.href = dataUrl;
+      link.click();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'hi' ? 'en' : 'hi';
+      document.getElementById('lang-label').innerText = currentLang === 'hi' ? 'EN / HI' : 'HI / EN';
+
+      if (currentLang === 'hi') {
+        document.getElementById('drag-hint-title').innerText = '360° घुमाने के लिए ड्रैग करें';
+        document.getElementById('drag-hint-sub').innerText = 'Slide finger left/right to view from all sides';
+        document.getElementById('label-selected-part').innerText = 'चुना हुआ भाग';
+        document.getElementById('label-choose-part').innerText = '1. शू पार्ट चुनें';
+        document.getElementById('label-curated-presets').innerText = 'कस्टम कलर प्रेसेट्स:';
+        document.getElementById('label-material-finish').innerText = 'मटीरियल फिनिश:';
+        document.getElementById('label-quick-themes').innerText = 'इन्स्टेंट फुल थीम्स';
+        document.getElementById('label-studio-env').innerText = 'स्टूडियो लाइटिंग वातावरण';
+        document.getElementById('label-gen-poster').innerText = 'AI पोस्टर जनरेट करें';
+      } else {
+        document.getElementById('drag-hint-title').innerText = 'Drag or swipe to spin 360°';
+        document.getElementById('drag-hint-sub').innerText = 'Explore custom shoe from every angle';
+        document.getElementById('label-selected-part').innerText = 'Selected Part';
+        document.getElementById('label-choose-part').innerText = '1. Select Shoe Component';
+        document.getElementById('label-curated-presets').innerText = 'Curated Presets:';
+        document.getElementById('label-material-finish').innerText = 'Material Finish:';
+        document.getElementById('label-quick-themes').innerText = 'Instant Full Themes';
+        document.getElementById('label-studio-env').innerText = 'Studio Environment';
+        document.getElementById('label-gen-poster').innerText = 'Generate AI Poster';
+      }
+
+      buildShoePartsSelectorUI();
+      selectPart(activePartKey);
+    }
+
+    function buildSizeSelectorUI() {
+      const container = document.getElementById('size-selector-grid');
+      container.innerHTML = '';
+      ['6', '7', '8', '9', '10', '11'].forEach(sz => {
+        const btn = document.createElement('button');
+        btn.onclick = () => {
+          selectedSize = sz;
+          buildSizeSelectorUI();
+          playToneSound('E4');
+        };
+        btn.className = `glass-btn py-2 text-xs font-bold rounded-xl text-center ${selectedSize === sz ? 'active' : 'text-slate-300'}`;
+        btn.innerText = `UK ${sz}`;
+        container.appendChild(btn);
+      });
+    }
+
+    function openCartModal() {
+      buildSizeSelectorUI();
+      document.getElementById('cart-modal').classList.remove('hidden');
+    }
+    function closeCartModal() {
+      document.getElementById('cart-modal').classList.add('hidden');
+    }
+
+    function checkoutSimulate() {
+      alert(`🎉 Thank you for placing your pre-order for Size UK ${selectedSize}! Your custom PAGA Star-Zip Sneaker edition is scheduled for manufacturing.`);
+      closeCartModal();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    function setupInteractionEvents() {
+      const container = document.getElementById('viewport-container');
+      let isPointerDown = false;
+      let startX = 0;
+
+      const onPointerDown = (e) => {
+        isPointerDown = true;
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        const dragHint = document.getElementById('drag-hint');
+        if (dragHint) dragHint.classList.add('opacity-0', 'pointer-events-none');
+      };
+
+      const onPointerMove = (e) => {
+        if (!isPointerDown) return;
+        const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+        const deltaX = currentX - startX;
+        startX = currentX;
+        rotate360ByDelta(deltaX);
+      };
+
+      const onPointerUp = () => { isPointerDown = false; };
+
+      container.addEventListener('mousedown', onPointerDown);
+      window.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('mouseup', onPointerUp);
+
+      container.addEventListener('touchstart', onPointerDown, { passive: true });
+      window.addEventListener('touchmove', onPointerMove, { passive: true });
+      window.addEventListener('touchend', onPointerUp);
+
+      // 3D Raycasting for clicking on shoe mesh
+      const canvas = document.getElementById('canvas-3d');
+      canvas.addEventListener('click', (e) => {
+        if (!scene || !camera) return;
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(shoeGroup.children, true);
+
+        if (intersects.length > 0) {
+          const hitObj = intersects[0].object;
+          if (hitObj.partKey) selectPart(hitObj.partKey);
+        }
+      });
+    }
+
+    function animateLoop() {
+      requestAnimationFrame(animateLoop);
+
+      if (isAutoRotating) {
+        currentAngle = (currentAngle + 1.1) % 360;
+        updateViewAngle(currentAngle);
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById('viewport-container');
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+
+    function init() {
+      const container = document.getElementById('viewport-container');
+      const canvas = document.getElementById('canvas-3d');
+
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x090d16);
+
+      camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+      camera.position.set(0, 0.8, 4.5);
+
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+      scene.add(ambientLight);
+
+      mainLight = new THREE.DirectionalLight(0xffffff, 1.2);
+      mainLight.position.set(5, 8, 5);
+      scene.add(mainLight);
+
+      rimLight = new THREE.DirectionalLight(0x10b981, 0.8);
+      rimLight.position.set(-5, -2, -5);
+      scene.add(rimLight);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.enableZoom = true;
+      controls.enablePan = false;
+      controls.maxPolarAngle = Math.PI / 1.8;
+      controls.minDistance = 2.0;
+      controls.maxDistance = 8.0;
+
+      raycaster = new THREE.Raycaster();
+      mouse = new THREE.Vector2();
+
+      buildPagaSneakerMesh();
+      buildShoePartsSelectorUI();
+      buildColorSwatchesUI();
+      selectPart('upper');
+
+      setupInteractionEvents();
+      window.addEventListener('resize', onWindowResize);
+
+      animateLoop();
+    }
+
+    window.onload = function() {
+      init();
+    };
+  </script>
 </body>
-</html>
+          </html>
